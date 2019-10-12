@@ -1,10 +1,14 @@
 import React from 'react';
 import {
-	BrowserRouter, Route, Switch, Redirect,
+	BrowserRouter, Route, Switch, Redirect, Link,
 } from 'react-router-dom';
 
 import Home from './Components/Home.jsx';
 import Popup from './Components/Popup.jsx';
+import Projects from './Components/Projects.jsx';
+import Employers from './Components/Employers.jsx';
+import About from './Components/About.jsx';
+import Profile from './Components/Profile.jsx';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -42,6 +46,15 @@ export default class App extends React.Component {
 						onRedirect={this.onRedirect}
 					/>
 				)}
+				<div className="header">
+					<div className="header_content">
+						<Link to="/">Главная</Link>
+						<Link to="/projects">Проекты</Link>
+						<Link to="/employers">Работодатели</Link>
+						<Link to="/about">О нас</Link>
+						<Link to="/profile">Профиль</Link>
+					</div>
+				</div>
 				<Switch>
 					{redirect.status === true && (
 						<>
@@ -51,7 +64,30 @@ export default class App extends React.Component {
 					)}
 					<Route exact path="/">
 						<Home
-							showPopup={showPopup}
+							onPopup={this.onPopup}
+							onRedirect={this.onRedirect}
+						/>
+					</Route>
+					<Route exact path="/projects">
+						<Projects
+							onPopup={this.onPopup}
+							onRedirect={this.onRedirect}
+						/>
+					</Route>
+					<Route exact path="/employers">
+						<Employers
+							onPopup={this.onPopup}
+							onRedirect={this.onRedirect}
+						/>
+					</Route>
+					<Route exact path="/about">
+						<About
+							onPopup={this.onPopup}
+							onRedirect={this.onRedirect}
+						/>
+					</Route>
+					<Route exact path="/profile">
+						<Profile
 							onPopup={this.onPopup}
 							onRedirect={this.onRedirect}
 						/>

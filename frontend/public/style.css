@@ -20,3 +20,38 @@ body {
     color: #34495e;
     background-color: #f0f4f7;
 }
+
+.header {
+    background: #6979F8;
+    border: 0;
+}
+
+.header a {
+    color: #fff;
+    margin: 10px;
+}
+
+.header_content {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.module {
+    margin: 0 20px;
+}
+
+.title {
+    margin: 20px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 36px;
+    color: #3F3356;
+}
