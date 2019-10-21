@@ -21,31 +21,8 @@ body {
     background-color: #f0f4f7;
 }
 
-.header {
-    background: #6979F8;
-    border: 0;
-}
-
-.header a {
-    color: #fff;
-    margin: 10px;
-}
-
-.header_content {
-    width: 90%;
-    margin: auto;
-    display: flex;
-    height: 70px;
-    justify-content: center;
-    align-items: center;
-}
-
 a {
     text-decoration: none;
-}
-
-.module {
-    margin: 0 20px;
 }
 
 .title {
@@ -54,4 +31,18 @@ a {
     font-size: 30px;
     line-height: 36px;
     color: #3F3356;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.module {
+    flex-grow: 1;
+}
+
+.content {
+    margin: 0 20px;
 }

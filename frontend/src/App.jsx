@@ -3,12 +3,16 @@ import {
 	BrowserRouter, Route, Switch, Redirect, Link,
 } from 'react-router-dom';
 
-import Home from './Components/Home.jsx';
-import Popup from './Components/Popup.jsx';
-import Projects from './Components/Projects.jsx';
-import Employers from './Components/Employers.jsx';
-import About from './Components/About.jsx';
-import Profile from './Components/Profile.jsx';
+import Home from './Containers/Home.jsx';
+import Popup from './Containers/Popup.jsx';
+import Projects from './Containers/Projects.jsx';
+import Employers from './Containers/Employers.jsx';
+import About from './Containers/About.jsx';
+import Profile from './Containers/Profile.jsx';
+
+import Header from './Components/Header/Header.jsx';
+import Footer from './Components/Footer/Footer.jsx';
+
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -16,6 +20,13 @@ export default class App extends React.Component {
 		this.state = {
 			showPopup: { active: false, current: null },
 			redirect: { status: false, path: '/' },
+			links: [
+				{ name: 'Главная', link: '/' },
+				{ name: 'Проекты', link: '/projects' },
+				{ name: 'Работодатели', link: '/employers' },
+				{ name: 'О нас', link: '/about' },
+				{ name: 'Профиль', link: '/profile' },
+			],
 		};
 		this.onPopup = this.onPopup.bind(this);
 		this.onRedirect = this.onRedirect.bind(this);
@@ -35,64 +46,59 @@ export default class App extends React.Component {
 
 	render() {
 		const {
-			showPopup, redirect,
+			showPopup, redirect, links,
 		} = this.state;
 		return (
 			<BrowserRouter>
-				{showPopup.active && (
-					<Popup
-						showPopup={showPopup}
-						onPopup={this.onPopup}
-						onRedirect={this.onRedirect}
-					/>
-				)}
-				<div className="header">
-					<div className="header_content">
-						<Link to="/">Главная</Link>
-						<Link to="/projects">Проекты</Link>
-						<Link to="/employers">Работодатели</Link>
-						<Link to="/about">О нас</Link>
-						<Link to="/profile">Профиль</Link>
-					</div>
-				</div>
-				<Switch>
-					{redirect.status === true && (
-						<>
-							<Redirect to={redirect.path} />
-							{this.setState({ redirect: { status: false, path: redirect.path } })}
-						</>
+				<div className="module">
+					{showPopup.active && (
+						<Popup
+							showPopup={showPopup}
+							onPopup={this.onPopup}
+							onRedirect={this.onRedirect}
+						/>
 					)}
-					<Route exact path="/">
-						<Home
-							onPopup={this.onPopup}
-							onRedirect={this.onRedirect}
-						/>
-					</Route>
-					<Route exact path="/projects">
-						<Projects
-							onPopup={this.onPopup}
-							onRedirect={this.onRedirect}
-						/>
-					</Route>
-					<Route exact path="/employers">
-						<Employers
-							onPopup={this.onPopup}
-							onRedirect={this.onRedirect}
-						/>
-					</Route>
-					<Route exact path="/about">
-						<About
-							onPopup={this.onPopup}
-							onRedirect={this.onRedirect}
-						/>
-					</Route>
-					<Route exact path="/profile">
-						<Profile
-							onPopup={this.onPopup}
-							onRedirect={this.onRedirect}
-						/>
-					</Route>
-				</Switch>
+					<Header links={links} />
+					<Switch>
+						{redirect.status === true && (
+							<>
+								<Redirect to={redirect.path} />
+								{this.setState({ redirect: { status: false, path: redirect.path } })}
+							</>
+						)}
+						<Route exact path="/">
+							<Home
+								onPopup={this.onPopup}
+								onRedirect={this.onRedirect}
+							/>
+						</Route>
+						<Route exact path="/projects">
+							<Projects
+								onPopup={this.onPopup}
+								onRedirect={this.onRedirect}
+							/>
+						</Route>
+						<Route exact path="/employers">
+							<Employers
+								onPopup={this.onPopup}
+								onRedirect={this.onRedirect}
+							/>
+						</Route>
+						<Route exact path="/about">
+							<About
+								onPopup={this.onPopup}
+								onRedirect={this.onRedirect}
+							/>
+						</Route>
+						<Route exact path="/profile">
+							<Profile
+								onPopup={this.onPopup}
+								onRedirect={this.onRedirect}
+							/>
+						</Route>
+					</Switch>
+				</div>
+				<Footer />
 			</BrowserRouter>
 		);
 	}

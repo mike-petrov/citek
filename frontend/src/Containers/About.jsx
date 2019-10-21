@@ -2,7 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 
 
-class Projects extends React.Component {
+class About extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,11 +14,11 @@ class Projects extends React.Component {
 	render() {
 		// const { sample } = this.state;
 		return (
-			<div className="module">
-				<div className="title">Проекты</div>
+			<div className="content">
+				<div className="title">О нас</div>
 			</div>
 		);
 	}
 }
 
-export default Projects;
+export default About;

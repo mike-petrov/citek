@@ -1,0 +1,18 @@
+.header {
+    background: #6795fc;
+    border: 0;
+}
+
+.header a {
+    color: #fff;
+    margin: 10px;
+}
+
+.header_content {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+}

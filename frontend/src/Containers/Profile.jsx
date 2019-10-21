@@ -14,7 +14,7 @@ class Profile extends React.Component {
 	render() {
 		// const { sample } = this.state;
 		return (
-			<div className="module">
+			<div className="content">
 				<div className="title">Профиль</div>
 			</div>
 		);
