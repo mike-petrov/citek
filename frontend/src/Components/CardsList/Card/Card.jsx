@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { rateCard } from '../../../Functions/api';
+
 import './Card.css';
 
 const Card = (props) => {
 	const {
-		card,
+		card, onRateCard,
 	} = props;
 	return (
 		<div className="card">
@@ -21,11 +23,11 @@ const Card = (props) => {
 				<div className="card_footer">
 					<Link to={`/project/${card.id}`} className="btn">Подробнее</Link>
 					<div className="card_like_group">
-						<span>
+						<span onClick={() => { onRateCard(card.id, 1); }}>
 							<i className="far fa-thumbs-up" />
 							{card.countLikes}
 						</span>
-						<span>
+						<span onClick={() => { onRateCard(card.id, 0); }}>
 							<i className="far fa-thumbs-down" />
 							{card.countDislikes}
 						</span>
