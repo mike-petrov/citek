@@ -9,17 +9,25 @@ function serverRequest(link) {
     return axios.post(server + link, json);
 }
 
-export function getCards() {
+export function getProjects() {
 	return new Promise((resolve) => {
-        serverRequest('/cards').then((res) => {
+        serverRequest('/projects').then((res) => {
             resolve(res.data);
         });
 	});
 }
 
-export function rateCard(_cardId, _type) {
+export function getProject(_projectId) {
 	return new Promise((resolve) => {
-        serverRequest(`/card/${_cardId}/like/${_type}`).then((res) => {
+        serverRequest(`/project/${_projectId}`).then((res) => {
+            resolve(res.data);
+        });
+	});
+}
+
+export function rateProject(_projectId, _type) {
+	return new Promise((resolve) => {
+        serverRequest(`/project/${_projectId}/like/${_type}`).then((res) => {
             resolve(res.data);
         });
 	});

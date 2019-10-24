@@ -6,15 +6,15 @@ import './CardsList.css';
 
 const CardsList = (props) => {
 	const {
-		cards, onRateCard,
+		projects, onRateProject,
 	} = props;
 	return (
 		<div className="card_list">
-			{cards.map((item) => (
+			{projects.map((item) => (
 				<Card
 					key={item.id}
-					card={item}
-					onRateCard={onRateCard}
+					project={item}
+					onRateProject={onRateProject}
 				/>
 			))}
 		</div>
