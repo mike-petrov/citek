@@ -1,0 +1,22 @@
+.about_info_block {
+    display: flex;
+    height: 253px;
+    margin-left: 10%;
+    margin-top: 40px;
+}
+
+.about_info_text {
+    width: 60%;
+    display: flex;
+    padding-left: 10%;
+    font-size: 30pt;
+    align-items: center;
+}
+
+.about_name {
+    padding-left: 10%;
+    height: 30;
+    width: 253px;
+    text-align: center;
+    font-size: 20pt;
+}

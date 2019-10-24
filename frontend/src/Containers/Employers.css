@@ -1,0 +1,23 @@
+.emp_info_block {
+    display: flex;
+    height: 253px;
+    margin-left: 10%;
+    margin-top: 40px;
+}
+
+.emp_info_text {
+    width: 60%;
+    display: flex;
+    padding-left: 10%;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.emp_name {
+    padding-left: 9%;
+    height: 30;
+    width: 273px;
+    text-align: center;
+    font-size: 20pt;
+}
