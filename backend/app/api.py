@@ -9,7 +9,7 @@ db = cluster['test']
 collection = db['projects']
 
 
-@app.route('/cards', methods=['POST'])
+@app.route('/projects', methods=['POST'])
 def post():
 	#x = request.json
 	results = collection.find({})
@@ -21,18 +21,19 @@ def post():
 		ans.append(result)
 	return json.dumps(ans)
 
-@app.route('/card/<cardId>/like/<flag>', methods=['POST'])
-def update(cardId, flag):
+@app.route('/project/<projectId>/like/<flag>', methods=['POST'])
+def update(projectId, flag):
 	if flag:
-		p = collection.find_one({'_id': cardId})
-		print(cardId)
+		p = collection.find_one({'_id': projectId})
+		print(projectId)
 		like = p['countLikes']
-		collection.update_one({'_id': cardId}, {'$set':{ 'countLikes': like + 1}})
+		collection.update_one({'_id': projectId}, {'$set':{ 'countLikes': like + 1}})
 	else:
-		p = collection.find_one({'_id': cardId})
+		p = collection.find_one({'_id': projectId})
 		like = p['countLikes']
-		collection.update_one({'_id': cardId}, {'$set':{ 'countDislikes': like - 1}})
+		collection.update_one({'_id': projectId}, {'$set':{ 'countDislikes': like - 1}})
 
+	ans = []
 	results = collection.find({})
 	for result in results:
 		t = result['_id']

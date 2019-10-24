@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const server = 'http://7813677c.ngrok.io';
+const server = 'http://localhost:5500';
 
 function serverRequest(link) {
     const json = {
