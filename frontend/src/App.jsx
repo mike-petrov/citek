@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-	BrowserRouter, Route, Switch, Redirect, Link,
+	BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
 
 import Home from './Containers/Home.jsx';
 import Popup from './Containers/Popup.jsx';
 import Projects from './Containers/Projects.jsx';
+import Project from './Containers/Project.jsx';
 import Employers from './Containers/Employers.jsx';
 import About from './Containers/About.jsx';
 import Profile from './Containers/Profile.jsx';
@@ -30,10 +31,6 @@ export default class App extends React.Component {
 		};
 		this.onPopup = this.onPopup.bind(this);
 		this.onRedirect = this.onRedirect.bind(this);
-	}
-
-	componentWillMount() {
-		// Hi
 	}
 
 	onPopup(_active, _current) {
@@ -74,6 +71,12 @@ export default class App extends React.Component {
 						</Route>
 						<Route exact path="/projects">
 							<Projects
+								onPopup={this.onPopup}
+								onRedirect={this.onRedirect}
+							/>
+						</Route>
+						<Route exact path="/project/:projectId">
+							<Project
 								onPopup={this.onPopup}
 								onRedirect={this.onRedirect}
 							/>
