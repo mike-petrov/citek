@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const server = 'http://localhost:5500';
+const server = 'http://localhost:3000';
 
 function serverRequest(link) {
     const json = {

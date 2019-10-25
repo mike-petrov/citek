@@ -9,7 +9,7 @@ db = cluster['test']
 collection = db['projects']
 
 
-@app.route('/projects', methods=['POST'])
+@app.route('/api/projects', methods=['POST'])
 def post():
 	#x = request.json
 	results = collection.find({})
@@ -21,7 +21,7 @@ def post():
 		ans.append(result)
 	return json.dumps(ans)
 
-@app.route('/project/<projectId>/like/<flag>', methods=['POST'])
+@app.route('/api/project/<projectId>/like/<flag>', methods=['POST'])
 def update(projectId, flag):
 	if flag:
 		p = collection.find_one({'_id': projectId})
@@ -30,7 +30,7 @@ def update(projectId, flag):
 		collection.update_one({'_id': projectId}, {'$set':{ 'countLikes': like + 1}})
 	else:
 		p = collection.find_one({'_id': projectId})
-		like = p['countLikes']
+		like = p['countDislikes']
 		collection.update_one({'_id': projectId}, {'$set':{ 'countDislikes': like - 1}})
 
 	ans = []
@@ -41,3 +41,10 @@ def update(projectId, flag):
 		result['id'] = int(t)
 		ans.append(result)
 	return json.dumps(ans)
+
+@app.route('/api/project/<projectId>', methods=['POST'])
+def viewproject(projectId):
+	res = collection.find_one({'_id': projectId})
+	t = res['_id']
+	del res['_id']
+	return json.dumps(res)
