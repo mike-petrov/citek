@@ -2,10 +2,8 @@ import axios from 'axios';
 
 const server = 'https://askpro.online:5500';
 
-function serverRequest(link) {
-    const json = {
-        name: 'Leonid',
-    };
+function serverRequest(link, json = {}) {
+    json.name = 'Leonid';
     return axios.post(server + link, json);
 }
 
@@ -17,17 +15,17 @@ export function getProjects() {
 	});
 }
 
-export function getProject(_projectId) {
+export function getProject(json) {
 	return new Promise((resolve) => {
-        serverRequest(`/project/${_projectId}`).then((res) => {
+        serverRequest('/project', json).then((res) => {
             resolve(res.data);
         });
 	});
 }
 
-export function rateProject(_projectId, _type) {
+export function rateProject(json) {
 	return new Promise((resolve) => {
-        serverRequest(`/project/${_projectId}/like/${_type}`).then((res) => {
+        serverRequest('/project/like', json).then((res) => {
             resolve(res.data);
         });
 	});

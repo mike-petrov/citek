@@ -13,7 +13,10 @@ class Project extends React.Component {
 
 	componentWillMount() {
 		const projectId = Number(document.location.pathname.split('/').pop());
-		getProject(projectId).then((res) => {
+		const arrayOutput = {
+			id: projectId,
+		};
+		getProject(arrayOutput).then((res) => {
 			this.setState({ arrayProject: res });
 		});
 	}

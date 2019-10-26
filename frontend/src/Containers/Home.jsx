@@ -22,8 +22,12 @@ class Home extends React.Component {
         });
 	}
 
-	onRateProject(projectId) {
-		rateProject(projectId, 1).then((res) => {
+	onRateProject(projectId, _type) {
+		const arrayOutput = {
+			id: projectId,
+			type: _type,
+		};
+		rateProject(arrayOutput).then((res) => {
 			this.setState({ projects: res });
 		});
 	}
