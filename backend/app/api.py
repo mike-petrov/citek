@@ -27,7 +27,7 @@ def update():
 	flag = x['type']
 	if flag:
 		p = projects.find_one({'_id': projectId})
-		print(projectId)
+		
 		like = p['countLikes']
 		projects.update_one({'_id': projectId}, {'$set':{ 'countLikes': like + 1}})
 	else:
