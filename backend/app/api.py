@@ -79,11 +79,11 @@ def registration():
 	mail = x['mail']
 	status = x['status']
 
-	if not users.find_one({'mail': mail}):
+	if users.find_one({'mail': mail}):
 		return json.dumps({'error': 'mail'})
 
-	post = {'_id': len(users) + 1,'login': login, 'password': password, 'name': name, 'mail': mail, 'status': status}
+	post = {'_id': users.count() + 1, 'login': login, 'password': password, 'name': name, 'mail': mail, 'status': status}
 
-	users.update_one(post)
+	users.insert_one(post)
 
 	return json.dumps(post)
