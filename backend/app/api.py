@@ -23,11 +23,14 @@ def post():
 @app.route('/project/like', methods=['POST'])
 def update():
 	x = request.json
-	projectId = x['id']
+
+	projectId = str(x['id'])
+	print(projectId)
+
 	flag = x['type']
 	if flag:
 		p = projects.find_one({'_id': projectId})
-		
+
 		like = p['countLikes']
 		projects.update_one({'_id': projectId}, {'$set':{ 'countLikes': like + 1}})
 	else:
@@ -47,7 +50,7 @@ def update():
 @app.route('/project', methods=['POST'])
 def viewproject():
 	x = request.json
-	res = projects.find_one({'_id': x['id']})
+	res = projects.find_one({'_id': str(x['id'])})
 	t = res['_id']
 	del res['_id']
 	return json.dumps(res)
@@ -79,7 +82,7 @@ def registration():
 	if users.find({'email': email}).limit(1).size() != 1:
 		return json.dumps({'error': 'email'})
 
-	post = {'_id': len(users),'login': login, 'password': password, 'name': name, 'email': email, 'status': status}
+	post = {'_id': len(users) + 1,'login': login, 'password': password, 'name': name, 'email': email, 'status': status}
 
 	users.update_one(post)
 
