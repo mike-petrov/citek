@@ -36,7 +36,7 @@ def update():
 	else:
 		p = projects.find_one({'_id': projectId})
 		like = p['countDislikes']
-		projects.update_one({'_id': projectId}, {'$set':{ 'countDislikes': like - 1}})
+		projects.update_one({'_id': projectId}, {'$set':{ 'countDislikes': like + 1}})
 
 	ans = []
 	results = projects.find({})
@@ -60,11 +60,11 @@ def authorization():
 	x = request.json
 	login = x['login']
 	password = x['password']
+	person = users.find_one({'login': login})
 
-	if projects.find({'login': login}).limit(1).size() != 1:
+	if not person:
 		return json.dumps({'error': 'login'})
 
-	person = projects.find({'login': login})
 	if person['password'] != password:
 		return json.dumps({'error': 'password'})
 	else:
@@ -76,13 +76,13 @@ def registration():
 	login = x['login']
 	password = x['password']
 	name = x['name']
-	email = x['email']
+	mail = x['mail']
 	status = x['status']
 
-	if users.find({'email': email}).limit(1).size() != 1:
-		return json.dumps({'error': 'email'})
+	if not users.find_one({'mail': mail}):
+		return json.dumps({'error': 'mail'})
 
-	post = {'_id': len(users) + 1,'login': login, 'password': password, 'name': name, 'email': email, 'status': status}
+	post = {'_id': len(users) + 1,'login': login, 'password': password, 'name': name, 'mail': mail, 'status': status}
 
 	users.update_one(post)
 
