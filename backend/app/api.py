@@ -59,11 +59,11 @@ def authorization():
 	password = x['password']
 
 	if projects.find({'login': login}).limit(1).size() != 1:
-		return error: 'login'
+		return json.dumps({'error': 'login'})
 
 	person = projects.find({'login': login})
 	if person['password'] != password:
-		return error: 'password'
+		return json.dumps({'error': 'password'})
 	else:
 		return json.dumps(person)
 
@@ -77,7 +77,7 @@ def registration():
 	status = x['status']
 
 	if users.find({'email': email}).limit(1).size() != 1:
-		return error: 'email'
+		return json.dumps({'error': 'email'})
 
 	post = {'_id': len(users),'login': login, 'password': password, 'name': name, 'email': email, 'status': status}
 
