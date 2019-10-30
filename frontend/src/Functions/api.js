@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const server = 'https://askpro.online:5500';
+const server = 'https://askpro.online/api';
 
 function serverRequest(link, json = {}) {
     json.name = 'Leonid';
