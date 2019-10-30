@@ -16,6 +16,7 @@ class Profile extends React.Component {
 				login: '',
 				mail: '',
 				type: '',
+				status: '',
 				password: '',
 			},
 			activePanel: 'login',
