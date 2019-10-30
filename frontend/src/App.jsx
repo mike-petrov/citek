@@ -14,11 +14,14 @@ import Profile from './Containers/Profile.jsx';
 import Header from './Components/Header/Header.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 
+import { authUser, regUser } from './Functions/api';
+
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			user: {},
 			showPopup: { active: false, current: null },
 			redirect: { status: false, path: '/' },
 			links: [
@@ -31,6 +34,7 @@ export default class App extends React.Component {
 		};
 		this.onPopup = this.onPopup.bind(this);
 		this.onRedirect = this.onRedirect.bind(this);
+		this.onAuth = this.onAuth.bind(this);
 	}
 
 	onPopup(_active, _current) {
@@ -41,9 +45,25 @@ export default class App extends React.Component {
 		this.setState({ redirect: { status: true, path: _path } });
 	}
 
+	onAuth(_event, user) {
+		authUser(user).then((res) => {
+			console.log(res);
+			this.setState({ user: res });
+        });
+		_event.preventDefault();
+	}
+
+	onReg(_event, user) {
+		regUser(user).then((res) => {
+			console.log(res);
+			this.setState({ user: res });
+        });
+		_event.preventDefault();
+	}
+
 	render() {
 		const {
-			showPopup, redirect, links,
+			showPopup, redirect, links, user,
 		} = this.state;
 		return (
 			<BrowserRouter>
@@ -95,8 +115,10 @@ export default class App extends React.Component {
 						</Route>
 						<Route exact path="/profile">
 							<Profile
+								user={user}
 								onPopup={this.onPopup}
 								onRedirect={this.onRedirect}
+								onAuth={this.onAuth}
 							/>
 						</Route>
 					</Switch>

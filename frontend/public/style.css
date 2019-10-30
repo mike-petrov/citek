@@ -46,3 +46,51 @@ a {
 .content {
     margin: 0 20px;
 }
+
+.form_login {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: auto;
+}
+
+.form_login input {
+    margin-bottom: 20px;
+}
+
+.btn {
+    color: #fff;
+    background-color: #6795fc;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: 0px;
+    text-align: center;
+    border: 0px;
+    font-weight: 500;
+    border-radius: 5px;
+    position: relative;
+}
+
+.btn:hover {
+    background: #6795fcd9;
+}
+
+.form_login .btn {
+    margin: 0
+}
+
+.form_login .subtitle {
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.form_login .title {
+    margin: 10px;
+    text-align: center;
+    font-size: 22px;
+    color: #454545;
+}

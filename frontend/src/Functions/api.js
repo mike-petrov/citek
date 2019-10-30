@@ -30,3 +30,19 @@ export function rateProject(json) {
         });
 	});
 }
+
+export function authUser(json) {
+	return new Promise((resolve) => {
+        serverRequest('/auth', json).then((res) => {
+            resolve(res.data);
+        });
+	});
+}
+
+export function regUser(json) {
+	return new Promise((resolve) => {
+        serverRequest('/reg', json).then((res) => {
+            resolve(res.data);
+        });
+	});
+}
