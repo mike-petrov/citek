@@ -86,7 +86,7 @@ class Profile extends React.Component {
 						<div className="subtitle" onClick={() => { this.onChangePanel('registration'); }}>Регистрация</div>
 					</form>
 				) : (
-					<form id="registration" className="form_login" onSubmit={(_event) => { onReg(_event, authUser); }}>
+					<form id="registration" className="form_login" onSubmit={(_event) => { onReg(_event, regUser); }}>
 						<div className="title">Регистрация</div>
 						<Input
 							name="name"

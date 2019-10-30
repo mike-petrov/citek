@@ -119,6 +119,7 @@ export default class App extends React.Component {
 								onPopup={this.onPopup}
 								onRedirect={this.onRedirect}
 								onAuth={this.onAuth}
+								onReg={this.onReg}
 							/>
 						</Route>
 					</Switch>
