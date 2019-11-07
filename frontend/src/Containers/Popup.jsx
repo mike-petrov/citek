@@ -13,7 +13,8 @@ class Popup extends React.Component {
 					<div className="popup">
 						<div className="popup_close_panel" onClick={() => { onPopup(false, null); }} />
 						<div className="popup_content">
-							1
+							<div className="popup_close" onClick={() => { onPopup(false); }}><i className="fas fa-times" /></div>
+							Ваш проект успешно создан
 						</div>
 					</div>
 				)}
