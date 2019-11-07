@@ -50,7 +50,7 @@ def update():
 @app.route('/project', methods=['POST'])
 def viewproject():
 	x = request.json
-	res = projects.find_one({'_id': str(x['id'])})
+	res = projects.find_one({'_id': x['id']})
 	t = res['_id']
 	del res['_id']
 	return json.dumps(res)
@@ -87,3 +87,30 @@ def registration():
 	users.insert_one(post)
 
 	return json.dumps(post)
+
+@app.route('/project/create', methods=['POST'])
+def create_project():
+	x = request.json
+
+	name = x['name']
+	description = x['description']
+	category = x['category']
+	status = x['status']
+	countLikes = 0
+	countDislikes = 0
+	linkGit = x['linkGit']
+
+	post = {
+			'_id': projects.count() + 1,
+			'name': name,
+			'description': description,
+			'category': category,
+	 		'status': status,
+			'countLikes': countLikes,
+			'countDislikes': countDislikes,
+			'linkGit': linkGit
+			}
+
+	projects.insert_one(post)
+
+	return post
