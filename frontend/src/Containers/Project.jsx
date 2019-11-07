@@ -1,7 +1,8 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 
+import Loader from '../Components/UI/Loader/Loader.jsx';
 import { getProject } from '../Functions/api';
+
 
 class Project extends React.Component {
 	constructor(props) {
@@ -26,7 +27,19 @@ class Project extends React.Component {
 		return (
 			<div className="content">
 				<div className="title">Проект</div>
-				{console.log(arrayProject)}
+				{arrayProject.length !== 0 ? (
+					<div className="profile_block">
+						<div className="profile_field">{`Категория: ${arrayProject.category}`}</div>
+						<div className="profile_field">{`Дизлайки: ${arrayProject.countDislikes}`}</div>
+						<div className="profile_field">{`Лайки: ${arrayProject.countLikes}`}</div>
+						<div className="profile_field">{`Описание: ${arrayProject.description}`}</div>
+						<div className="profile_field">{`GitHub: ${arrayProject.linkGit}`}</div>
+						<div className="profile_field">{`Имя: ${arrayProject.name}`}</div>
+						<div className="profile_field">{`Статутс: ${arrayProject.status}`}</div>
+					</div>
+				) : (
+					<Loader />
+				)}
 			</div>
 		);
 	}

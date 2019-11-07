@@ -47,14 +47,16 @@ a {
     margin: 0 20px;
 }
 
-.form_login {
+.form_login,
+.form_create {
     display: flex;
     flex-direction: column;
     width: 30%;
     margin: auto;
 }
 
-.form_login input {
+.form_login input,
+.form_create input {
     margin-bottom: 20px;
 }
 
@@ -77,20 +79,132 @@ a {
     background: #6795fcd9;
 }
 
-.form_login .btn {
+.form_login .btn,
+.form_create .btn {
     margin: 0
 }
 
-.form_login .subtitle {
+.form_login .subtitle,
+.form_create .subtitle {
     text-align: center;
     margin: 10px;
     cursor: pointer;
     font-size: 14px;
 }
 
-.form_login .title {
+.form_login .title,
+.form_create .title {
     margin: 10px;
     text-align: center;
     font-size: 22px;
     color: #454545;
+}
+
+.profile_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile_block .profile_field {
+    font-weight: bold;
+    margin: 10px;
+}
+
+.title_group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title_group i {
+    cursor: pointer;
+}
+
+.popup {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    bottom: 0;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.popup_blocks {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.popup_block {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 30px;
+    margin: 10px;
+    align-items: center;
+    background: #f0f4f7;
+    border-radius: 8px;
+}
+
+.popup_block .far {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.popup_block:hover {
+    background: #ecf6fe;
+    cursor: pointer;
+}
+
+.popup_close_panel {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    bottom: 0;
+    margin: auto;
+}
+
+.popup_close .fas {
+    cursor: pointer;
+}
+
+.popup_close .fas:hover {
+    opacity: 0.8;
+}
+
+.popup_content {
+    position: absolute;
+    background: #fff;
+    border-radius: 4px;
+    z-index: 101;
+    padding: 20px;
+    min-width: 280px;
+    max-width: 500px;
+}
+
+.popup_content .popup_text {
+    max-height: 300px;
+    overflow-x: scroll;
+    margin: 0 20px;
+}
+
+.popup_close {
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }

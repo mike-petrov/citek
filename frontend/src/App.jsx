@@ -35,6 +35,18 @@ export default class App extends React.Component {
 		this.onPopup = this.onPopup.bind(this);
 		this.onRedirect = this.onRedirect.bind(this);
 		this.onAuth = this.onAuth.bind(this);
+		this.onReg = this.onReg.bind(this);
+		this.handlerExit = this.handlerExit.bind(this);
+	}
+
+	componentWillMount() {
+		const { user } = this.state;
+		// Определение пользователя
+		if (localStorage.getItem('user') !== null) {
+			this.setState({ user: JSON.parse(localStorage.getItem('user')) });
+		} else {
+			localStorage.setItem('user', JSON.stringify(user));
+		}
 	}
 
 	onPopup(_active, _current) {
@@ -48,17 +60,38 @@ export default class App extends React.Component {
 	onAuth(_event, user) {
 		authUser(user).then((res) => {
 			console.log(res);
-			this.setState({ user: res });
+			if (res.error === 'login') {
+				document.getElementById('auth_login').style.background = '#e74c3c';
+				document.getElementById('auth_password').style.background = '#cccccc50';
+			} else if (res.error === 'password') {
+				document.getElementById('auth_login').style.background = '#cccccc50';
+				document.getElementById('auth_password').style.background = '#e74c3c';
+			} else {
+				document.getElementById('auth_login').style.background = '#cccccc50';
+				document.getElementById('auth_password').style.background = '#cccccc50';
+				this.setState({ user: res });
+				localStorage.setItem('user', JSON.stringify(res));
+			}
         });
 		_event.preventDefault();
 	}
 
 	onReg(_event, user) {
 		regUser(user).then((res) => {
-			console.log(res);
-			this.setState({ user: res });
+			if (res.error === 'mail') {
+				document.getElementById('reg_mail').style.background = '#e74c3c';
+			} else {
+				document.getElementById('reg_mail').style.background = '#cccccc50';
+				this.setState({ user: res });
+				localStorage.setItem('user', JSON.stringify(res));
+			}
         });
 		_event.preventDefault();
+	}
+
+	handlerExit() {
+		this.setState({ user: {} });
+		localStorage.setItem('user', JSON.stringify({}));
 	}
 
 	render() {
@@ -118,6 +151,7 @@ export default class App extends React.Component {
 								user={user}
 								onPopup={this.onPopup}
 								onRedirect={this.onRedirect}
+								handlerExit={this.handlerExit}
 								onAuth={this.onAuth}
 								onReg={this.onReg}
 							/>
