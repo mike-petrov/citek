@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Input from '../Components/UI/Input/Input.jsx';
+import Button from '../Components/UI/Button/Button.jsx';
 
 
 class Profile extends React.Component {
@@ -55,79 +56,98 @@ class Profile extends React.Component {
 	}
 
 	render() {
-		const { onAuth, onReg } = this.props;
+		const {
+			onAuth, onReg, user, handlerExit,
+		} = this.props;
 		const { authUser, regUser, activePanel } = this.state;
 		return (
 			<div className="content">
 				<div className="title">Профиль</div>
-				{activePanel === 'login' ? (
-					<form id="login" className="form_login" onSubmit={(_event) => { onAuth(_event, authUser); }}>
-						<div className="title">Авторизация</div>
-						<Input
-							name="login"
-							type="text"
-							placeholder="Логин"
-							value={authUser.login}
-							onChange={(_e) => { this.handleAuthUser(_e, 'login'); }}
-							required
-						/>
-						<Input
-							name="password"
-							type="text"
-							placeholder="Пароль"
-							value={authUser.password}
-							onChange={(_e) => { this.handleAuthUser(_e, 'password'); }}
-							required
-						/>
-						<Input
-							className="btn"
-							type="submit"
-							value="Войти"
-						/>
-						<div className="subtitle" onClick={() => { this.onChangePanel('registration'); }}>Регистрация</div>
-					</form>
+				{user.login === undefined ? (
+					<>
+						{activePanel === 'login' ? (
+							<form id="login" className="form_login" onSubmit={(_event) => { onAuth(_event, authUser); }}>
+								<div className="title">Авторизация</div>
+								<Input
+									id="auth_login"
+									name="login"
+									type="text"
+									placeholder="Логин"
+									value={authUser.login}
+									onChange={(_e) => { this.handleAuthUser(_e, 'login'); }}
+									required
+								/>
+								<Input
+									id="auth_password"
+									name="password"
+									type="text"
+									placeholder="Пароль"
+									value={authUser.password}
+									onChange={(_e) => { this.handleAuthUser(_e, 'password'); }}
+									required
+								/>
+								<Input
+									className="btn"
+									type="submit"
+									value="Войти"
+								/>
+								<div className="subtitle" onClick={() => { this.onChangePanel('registration'); }}>Регистрация</div>
+							</form>
+						) : (
+							<form id="registration" className="form_login" onSubmit={(_event) => { onReg(_event, regUser); }}>
+								<div className="title">Регистрация</div>
+								<Input
+									name="name"
+									type="text"
+									placeholder="Имя"
+									value={regUser.name}
+									onChange={(_e) => { this.handleRegUser(_e, 'name'); }}
+									required
+								/>
+								<Input
+									name="login"
+									type="text"
+									placeholder="Логин"
+									value={regUser.login}
+									onChange={(_e) => { this.handleRegUser(_e, 'login'); }}
+									required
+								/>
+								<Input
+									id="reg_mail"
+									name="mail"
+									type="text"
+									placeholder="E-mail"
+									value={regUser.mail}
+									onChange={(_e) => { this.handleRegUser(_e, 'mail'); }}
+									required
+								/>
+								<Input
+									name="password"
+									type="text"
+									placeholder="Пароль"
+									value={regUser.password}
+									onChange={(_e) => { this.handleRegUser(_e, 'password'); }}
+									required
+								/>
+								<Input
+									className="btn"
+									type="submit"
+									value="Зарегистрироваться"
+								/>
+								<div className="subtitle" onClick={() => { this.onChangePanel('login'); }}>Авторизация</div>
+							</form>
+						)}
+					</>
 				) : (
-					<form id="registration" className="form_login" onSubmit={(_event) => { onReg(_event, regUser); }}>
-						<div className="title">Регистрация</div>
-						<Input
-							name="name"
-							type="text"
-							placeholder="Имя"
-							value={regUser.name}
-							onChange={(_e) => { this.handleRegUser(_e, 'name'); }}
-							required
-						/>
-						<Input
-							name="login"
-							type="text"
-							placeholder="Логин"
-							value={regUser.login}
-							onChange={(_e) => { this.handleRegUser(_e, 'login'); }}
-							required
-						/>
-						<Input
-							name="mail"
-							type="text"
-							placeholder="E-mail"
-							value={regUser.mail}
-							onChange={(_e) => { this.handleRegUser(_e, 'mail'); }}
-							required
-						/>
-						<Input
-							name="password"
-							type="text"
-							placeholder="Пароль"
-							value={regUser.password}
-							onChange={(_e) => { this.handleRegUser(_e, 'password'); }}
-							required
-						/>
-						<Input
-							className="btn"
-							type="submit"
-							value="Войти"
-						/>
-						<div className="subtitle" onClick={() => { this.onChangePanel('login'); }}>Авторизация</div>
-					</form>
+					<div className="profile_block">
+						<div className="profile_field">{`Id: ${user._id}`}</div>
+						<div className="profile_field">{`Имя: ${user.name}`}</div>
+						<div className="profile_field">{`Логин: ${user.login}`}</div>
+						<div className="profile_field">{`Почта: ${user.mail}`}</div>
+						<Button onClick={handlerExit}>
+							Выйти
+						</Button>
+					</div>
 				)}
 			</div>
 		);
