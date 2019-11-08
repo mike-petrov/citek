@@ -24,9 +24,6 @@
     font-size: 125%;
 }
 
-.flexible_image {
-    max-width: 100%;
-}
 
 @media screen and (max-width: 500px) {
     .emp_info_photo, .emp_info_text {

@@ -209,3 +209,8 @@ a {
     top: 0;
     right: 0;
 }
+
+.flexible_image {
+    max-width: 100%;
+    border: 3px solid #6795fc;
+}
