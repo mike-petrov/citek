@@ -2,27 +2,9 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import Sevryukov from '../Images/sevryukov.jpg'
 import Blekanov from '../Images/blekanov.jpg'
+import Gorbunov from '../Images/gorbunov.jpg'
 
 import './Employers.css';
-
-class EmployerInfo extends React.Component {
-	render() {
-		return(
-			<div>
-				<div className="emp_info_block">
-					<img src={this.props.photo}/>
-					<div className="emp_info_text">
-						{this.props.text}
-					</div>
-				</div>
-				<div className="emp_name">{this.props.name}</div>
-				<div className="emp_name">{this.props.lastname}</div>
-				
-			</div>
-		)
-	}
-}
-
 
 class Employers extends React.Component {
 	constructor(props) {
@@ -58,8 +40,44 @@ class Employers extends React.Component {
 		return (
 			<div className="content">
 				<div className="title">Работодатели</div>
-				<EmployerInfo name="Севрюков Сергей" lastname="Юрьевич" photo={Sevryukov} text={text_s} />
-				<EmployerInfo name="Блеканов Иван" lastname="Станиславович" photo={Blekanov} text={text_b} />
+					<div>
+						<div className="emp_info_block">
+							<div className="emp_info_photo">
+								<img src={Sevryukov} class="flexible_image"/>
+								<div className="emp_name">
+									<p>Севрюков Сергей</p>
+									<p>Юрьевич</p>
+								</div>
+							</div>
+							<div className="emp_info_text">
+								{text_s}
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="emp_info_block">
+							<div className="emp_info_photo">
+								<img src={Blekanov} class="flexible_image"/>
+								<div className="emp_name">Блеканов Иван</div>
+								<div className="emp_name">Станиславович</div>
+							</div>
+							<div className="emp_info_text">
+								{text_b}
+							</div>
+						</div>
+					</div>
+					<div>
+						<div className="emp_info_block">
+							<div className="emp_info_photo">
+								<img src={Gorbunov} class="flexible_image"/>
+								<div className="emp_name">Горбунов Владислав</div>
+								<div className="emp_name">???</div>
+							</div>
+							<div className="emp_info_text">
+								???
+							</div>
+						</div>
+					</div>
 			</div>
 		);
 	}
