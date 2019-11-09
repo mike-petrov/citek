@@ -23,7 +23,6 @@ class Employers extends React.Component {
 				<p>Старший преподаватель кафедры технологии 
 				   программирования факультета ПМ-ПУ университета СПбГУ</p>
 				<p>Контакты: http://ssevryukov.moikrug.ru/</p>
-				<p>Тел: +7-XXX-XXX-XX-XX</p>
 			</div>
 		)
 
@@ -32,8 +31,14 @@ class Employers extends React.Component {
 				<p>Кандидат технических наук, доцент кафедры технологии программирования, <br></br>
 				   заведующий кафедрой технологии программирования</p>
 				<p>Контакты: http://www.apmath.spbu.ru/ru/staff/blekanov/index.html</p>
-				<p>Комн. 267</p>
 				<p>E-mail: i.blekanov@gmail.com</p>
+			</div>
+		)
+
+		const text_g = (
+			<div>
+				<p>Ассистент, кафедра технологии программирования, <br></br>
+				   MK.3021.2019 Системный анализ, информатика и управление</p>
 			</div>
 		)
 
@@ -44,10 +49,8 @@ class Employers extends React.Component {
 						<div className="emp_info_block">
 							<div className="emp_info_photo">
 								<img src={Sevryukov} class="flexible_image"/>
-								<div className="emp_name">
-									<p>Севрюков Сергей</p>
-									<p>Юрьевич</p>
-								</div>
+								<div className="emp_name">Севрюков Сергей</div>
+								<div className="emp_name">Юрьевич</div>
 							</div>
 							<div className="emp_info_text">
 								{text_s}
@@ -71,10 +74,10 @@ class Employers extends React.Component {
 							<div className="emp_info_photo">
 								<img src={Gorbunov} class="flexible_image"/>
 								<div className="emp_name">Горбунов Владислав</div>
-								<div className="emp_name">???</div>
+								<div className="emp_name">Игоревич</div>
 							</div>
 							<div className="emp_info_text">
-								???
+								{text_g}
 							</div>
 						</div>
 					</div>
