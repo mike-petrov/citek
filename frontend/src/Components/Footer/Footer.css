@@ -1,8 +1,8 @@
 .footer {
-    background: #6795fc;
-    padding: 20px;
+    background-image: url(../../Images/footer1.png);
     text-align: center;
-    color: #fff;
+    color: white;
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
 }

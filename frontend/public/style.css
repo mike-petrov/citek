@@ -11,6 +11,10 @@
 html {
     margin: 0;
     padding: 0;
+    background-image: url(img/background2.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body {
@@ -18,7 +22,7 @@ body {
     padding: 0;
     font-family: ProximaNova, sans-serif;
     color: #34495e;
-    background-color: #f0f4f7;
+    /* background-color: #f0f4f7; */
 }
 
 a {
@@ -63,7 +67,7 @@ a {
 
 .btn {
     color: #fff;
-    background-color: #6795fc;
+    background: rgb(170,63,31);
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
@@ -77,7 +81,7 @@ a {
 }
 
 .btn:hover {
-    background: #6795fcd9;
+    background: rgb(170, 83, 57);
 }
 
 .form_login .btn,
@@ -212,5 +216,5 @@ a {
 
 .flexible_image {
     max-width: 100%;
-    border: 3px solid #6795fc;
+    border: 3px solid rgb(170,63,31);
 }

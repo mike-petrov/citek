@@ -1,18 +1,44 @@
 .header {
-    background: #6795fc;
-    border: 0;
-}
-
-.header a {
-    color: #fff;
-    margin: 10px;
-}
-
-.header_content {
-    width: 90%;
-    margin: auto;
+    margin: 20px auto auto auto;
+    background: rgb(170,63,31);
+    height: 80px;
     display: flex;
-    height: 70px;
     justify-content: center;
     align-items: center;
 }
+
+.header a {
+    height: 50px;
+    width: 150px;
+    color: white;
+    font-size: 15pt;
+    margin: 10px;
+    border: 3px solid white;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header a:hover {
+    height: 50px;
+    width: 150px;
+    color: rgb(170,63,31);
+    background: white;
+    font-size: 15pt;
+    margin: 10px;
+    border: 3px solid rgb(170,63,31);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
