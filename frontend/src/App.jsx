@@ -14,7 +14,7 @@ import Profile from './Containers/Profile.jsx';
 import Header from './Components/Header/Header.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 
-import { authUser, regUser } from './Functions/api';
+import { authUser, regUser, rateProject } from './Functions/api';
 
 
 export default class App extends React.Component {
@@ -37,6 +37,7 @@ export default class App extends React.Component {
 		this.onAuth = this.onAuth.bind(this);
 		this.onReg = this.onReg.bind(this);
 		this.handlerExit = this.handlerExit.bind(this);
+		this.onRateProject = this.onRateProject.bind(this);
 	}
 
 	componentWillMount() {
@@ -47,6 +48,16 @@ export default class App extends React.Component {
 		} else {
 			localStorage.setItem('user', JSON.stringify(user));
 		}
+	}
+
+	onRateProject(projectId, _type) {
+		const arrayOutput = {
+			id: projectId,
+			type: _type,
+		};
+		rateProject(arrayOutput).then((res) => {
+			this.setState({ projects: res });
+		});
 	}
 
 	onPopup(_active, _current) {
@@ -126,12 +137,14 @@ export default class App extends React.Component {
 							<Projects
 								onPopup={this.onPopup}
 								onRedirect={this.onRedirect}
+								onRateProject={this.onRateProject}
 							/>
 						</Route>
 						<Route exact path="/project/:projectId">
 							<Project
 								onPopup={this.onPopup}
 								onRedirect={this.onRedirect}
+								onRateProject={this.onRateProject}
 							/>
 						</Route>
 						<Route exact path="/employers">

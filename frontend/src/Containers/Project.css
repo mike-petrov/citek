@@ -59,3 +59,40 @@
     display: flex;
     align-items: center;
 }
+
+.CircularProgressbar {
+    width: 100px;
+    vertical-align: middle;
+}
+
+.project_block_group {
+    display: flex;
+    justify-content: space-between;
+    width: calc(90% + 20px);
+    margin: 20px auto;
+}
+
+.project_block_group .project_block {
+    width: 47%;
+    margin: 0;
+}
+
+@media (max-width: 1000px) {
+    .project_block_group .project_block {
+        width: 46%;
+    }
+}
+
+@media (max-width: 700px) {
+    .project_block_group {
+        flex-direction: column;
+    }
+
+    .project_block_group .project_block {
+        width: unset;
+    }
+
+    .project_block_group .project_block {
+        margin-bottom: 20px;
+    }
+}

@@ -4,7 +4,7 @@ import Input from '../Components/UI/Input/Input.jsx';
 import Loader from '../Components/UI/Loader/Loader.jsx';
 import CardsList from '../Components/CardsList/CardsList.jsx';
 
-import { getProjects, rateProject, createProject } from '../Functions/api';
+import { getProjects, createProject } from '../Functions/api';
 
 class Projects extends React.Component {
 	constructor(props) {
@@ -20,7 +20,6 @@ class Projects extends React.Component {
 				linkGit: '',
 			},
 		};
-		this.onRateProject = this.onRateProject.bind(this);
 		this.onCreate = this.onCreate.bind(this);
 	}
 
@@ -28,16 +27,6 @@ class Projects extends React.Component {
 		getProjects().then((res) => {
 			this.setState({ projects: res });
         });
-	}
-
-	onRateProject(projectId, _type) {
-		const arrayOutput = {
-			id: projectId,
-			type: _type,
-		};
-		rateProject(arrayOutput).then((res) => {
-			this.setState({ projects: res });
-		});
 	}
 
 	onChanePanel(_panel) {
@@ -73,6 +62,7 @@ class Projects extends React.Component {
 	}
 
 	render() {
+		const { onRateProject } = this.props;
 		const { projects, activePanel, arrayProject } = this.state;
 		return (
 			<div className="content">
@@ -87,7 +77,7 @@ class Projects extends React.Component {
 						{projects.length !== 0 ? (
 							<CardsList
 								projects={projects}
-								onRateProject={this.onRateProject}
+								onRateProject={onRateProject}
 							/>
 						) : (
 							<Loader />
