@@ -30,6 +30,8 @@
     }
 
     .home_info_block {
-        height: 800px;
+        margin-top: 0;
+        height: unset;
+        flex-direction: column;
     }
 }

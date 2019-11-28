@@ -32,7 +32,6 @@ class Project extends React.Component {
 	render() {
 		const { onRateProject } = this.props;
 		const { arrayProject } = this.state;
-		console.log(arrayProject);
 		return (
 			<div className="content">
 				<div className="title">Проект</div>

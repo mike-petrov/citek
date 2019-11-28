@@ -36,7 +36,6 @@ class Projects extends React.Component {
 	onCreate(_event, project) {
 		const { onPopup } = this.props;
 		createProject(project).then(() => {
-			// console.log(res);
 			onPopup(true, 'success');
 			getProjects().then((res) => {
 				this.setState({ projects: res });

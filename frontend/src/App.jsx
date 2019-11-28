@@ -74,7 +74,6 @@ export default class App extends React.Component {
 
 	onAuth(_event, user) {
 		authUser(user).then((res) => {
-			console.log(res);
 			if (res.error === 'login') {
 				document.getElementById('auth_login').style.background = '#e74c3c';
 				document.getElementById('auth_password').style.background = '#cccccc50';
