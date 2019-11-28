@@ -24,13 +24,11 @@ def post():
 def update():
 	x = request.json
 
-	projectId = str(x['id'])
-	print(projectId)
+	projectId = x['id']
 
 	flag = x['type']
 	if flag:
 		p = projects.find_one({'_id': projectId})
-
 		like = p['countLikes']
 		projects.update_one({'_id': projectId}, {'$set':{ 'countLikes': like + 1}})
 	else:
@@ -52,7 +50,7 @@ def viewproject():
 	x = request.json
 	res = projects.find_one({'_id': x['id']})
 	t = res['_id']
-	del res['_id']
+#	del res['_id']
 	return json.dumps(res)
 
 @app.route('/auth', methods=['POST'])
