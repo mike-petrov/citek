@@ -60,6 +60,10 @@ export default class App extends React.Component {
 		});
 	}
 
+	onHide = () => {
+		document.getElementById('checkbox').checked = false;
+	};
+
 	onPopup(_active, _current) {
 		this.setState({ showPopup: { active: _active, current: _current } });
 	}
@@ -107,7 +111,7 @@ export default class App extends React.Component {
 
 	render() {
 		const {
-			showPopup, redirect, links, user,
+			showPopup, redirect, links, user, onHide,
 		} = this.state;
 		return (
 			<BrowserRouter>
@@ -119,7 +123,7 @@ export default class App extends React.Component {
 							onRedirect={this.onRedirect}
 						/>
 					)}
-					<Header links={links} />
+					<Header links={links} onHide={this.onHide} />
 					<Switch>
 						{redirect.status === true && (
 							<>
