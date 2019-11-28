@@ -6,7 +6,7 @@ import BubbleChart from '@weknow/react-bubble-chart-d3';
 import Radar from 'react-d3-radar';
 
 import Loader from '../Components/UI/Loader/Loader.jsx';
-import { getProject } from '../Functions/api';
+import { getProject, rateProject } from '../Functions/api';
 
 import './Project.css';
 
@@ -17,6 +17,7 @@ class Project extends React.Component {
 		this.state = {
 			arrayProject: [],
 		};
+		this.onRateProject = this.onRateProject.bind(this);
 	}
 
 	componentWillMount() {
@@ -29,8 +30,19 @@ class Project extends React.Component {
 		});
 	}
 
+	onRateProject(projectId, _type) {
+		const arrayOutput = {
+			id: projectId,
+			type: _type,
+		};
+		rateProject(arrayOutput).then((res) => {
+			getProject(arrayOutput).then((res) => {
+				this.setState({ arrayProject: res });
+			});
+		});
+	}
+
 	render() {
-		const { onRateProject } = this.props;
 		const { arrayProject } = this.state;
 		return (
 			<div className="content">
@@ -142,11 +154,11 @@ class Project extends React.Component {
 							<div className="profile_field profile_field_flex">
 								<span className="profile_field_title">Оценить проект: </span>
 								<div className="card_like_group">
-									<span onClick={() => { onRateProject(arrayProject.id, 1); }}>
+									<span onClick={() => { this.onRateProject(arrayProject._id, 1); }}>
 										<i className="far fa-thumbs-up" />
 										{arrayProject.countLikes}
 									</span>
-									<span onClick={() => { onRateProject(arrayProject.id, 0); }}>
+									<span onClick={() => { this.onRateProject(arrayProject._id, 0); }}>
 										<i className="far fa-thumbs-down" />
 										{arrayProject.countDislikes}
 									</span>
