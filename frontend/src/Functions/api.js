@@ -4,7 +4,7 @@ import axios from 'axios';
 //const server = 'http://4cc7c665.ngrok.io'; // localhost
 
 function serverRequest(link, json = {}) {
-    json.name = 'Leonid';
+    // json.name = 'Leonid';
     return axios.post(server + link, json);
 }
 
