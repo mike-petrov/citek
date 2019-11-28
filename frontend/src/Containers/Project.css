@@ -1,0 +1,61 @@
+.card_like_group {
+    display: flex;
+}
+
+.card_like_group span {
+    background: rgb(242, 243, 245);
+    margin: 0 10px;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+}
+
+.card_like_group span:hover {
+    background: rgb(170, 63, 31);
+    color: #fff;
+}
+
+.card_like_group span i {
+    margin-right: 5px;
+}
+
+.project_block {
+    width: 90%;
+    text-align: left;
+    margin: 20px auto;
+    background: #fff;
+    filter: drop-shadow(2px 2px 20px rgba(101, 112, 118, 0.5));
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.profile_field_diogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project_block .profile_field {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.profile_field_title {
+    font-weight: bold;
+    color: #aa3f1f;
+    margin-right: 10px;
+    font-size: 22px;
+}
+
+.profile_field_category {
+    padding: 3px 8px;
+    background: rgb(101, 112, 118);
+    color: #fff;
+    border-radius: 4px;
+}
+
+.profile_field_flex {
+    display: flex;
+    align-items: center;
+}
