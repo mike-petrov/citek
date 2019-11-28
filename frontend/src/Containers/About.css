@@ -49,14 +49,13 @@
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
     .about_info_photo, .about_info_text {
         float: none;
         width: 100%;
         height: 50%;
     }
     .about_info_block {
-        height: 800px;
+        height: unset;
     }
 }
-

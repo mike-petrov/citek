@@ -10,11 +10,6 @@ import { relative } from 'path';
 import './About.css';
 
 class About extends React.Component {
-	constructor(props) {
-		super(props);
-
-	}
-
 	render() {
 		// const { sample } = this.state;
 
@@ -22,7 +17,7 @@ class About extends React.Component {
 			<div>
 				<p>Студент 3 курса СПбГУ, <br></br>
 				   факультет ПМ-ПУ, <br></br>
-				   331 группа</p> 
+				   331 группа</p>
 				<p>Роль: TeamLead & Designer</p>
 			</div>
 			)
@@ -30,7 +25,7 @@ class About extends React.Component {
 			<div>
 				<p>Студент 3 курса СПбГУ, <br></br>
 					факультет ПМ-ПУ, <br></br>
-					331 группа</p> 
+					331 группа</p>
 				<p>Роль: Software tester</p>
 			</div>
 			)
@@ -38,7 +33,7 @@ class About extends React.Component {
 			<div>
 				<p>Студент 3 курса СПбГУ, <br></br>
 					факультет ПМ-ПУ, <br></br>
-					333 группа</p> 
+					333 группа</p>
 				<p>Роль: Back-end</p>
 			</div>
 			)
@@ -46,7 +41,7 @@ class About extends React.Component {
 			<div>
 				<p>Студент 3 курса СПбГУ, <br></br>
 					факультет ПМ-ПУ, <br></br>
-					331 группа</p> 
+					331 группа</p>
 				<p>Роль: Front-end & Adviser</p>
 			</div>
 			)
@@ -54,7 +49,7 @@ class About extends React.Component {
 			<div>
 				<p>Студент 3 курса СПбГУ, <br></br>
 					факультет ПМ-ПУ, <br></br>
-					332 группа</p> 
+					332 группа</p>
 				<p>Роль: Front-end</p>
 			</div>
 			)

@@ -1,6 +1,6 @@
 .header {
     margin: 20px auto auto auto;
-    background: rgb(170,63,31);
+    background: rgb(170, 63, 31);
     height: 80px;
     display: flex;
     justify-content: center;
@@ -23,11 +23,11 @@
 .header a:hover {
     height: 50px;
     width: 150px;
-    color: rgb(170,63,31);
+    color: rgb(170, 63, 31);
     background: white;
     font-size: 15pt;
     margin: 10px;
-    border: 3px solid rgb(170,63,31);
+    border: 3px solid rgb(170, 63, 31);
     border-radius: 30px;
     display: flex;
     justify-content: center;
@@ -40,5 +40,12 @@
     align-items: center;
 }
 
+@media (max-width: 900px) {
+    .header_content {
+        flex-direction: column;
+    }
 
-
+    .header {
+        margin: 0;
+    }
+}

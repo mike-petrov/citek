@@ -67,7 +67,7 @@ a {
 
 .btn {
     color: #fff;
-    background: rgb(170,63,31);
+    background: rgb(170, 63, 31);
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
@@ -216,5 +216,17 @@ a {
 
 .flexible_image {
     max-width: 100%;
-    border: 3px solid rgb(170,63,31);
+    border: 3px solid rgb(170, 63, 31);
+}
+
+@media (max-width: 1000px) {
+    html {
+        background-size: unset;
+    }
+}
+
+@media (max-width: 700px) {
+    .form_login, .form_create {
+        width: 80%;
+    }
 }

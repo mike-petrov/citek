@@ -30,7 +30,7 @@
 
 .card_category {
     padding: 3px 8px;
-    background: rgb(170,83,51);
+    background: rgb(101, 112, 118);
     color: #fff;
     border-radius: 4px;
 }
@@ -62,7 +62,7 @@
 }
 
 .card_like_group span {
-    background: rgb(172, 114, 96);
+    background: rgb(242, 243, 245);
     margin: 0 10px;
     padding: 10px;
     border-radius: 6px;
@@ -71,7 +71,7 @@
 }
 
 .card_like_group span:hover {
-    background: rgb(170,63,31);
+    background: rgb(170, 63, 31);
     color: #fff;
 }
 

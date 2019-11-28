@@ -24,14 +24,16 @@
     font-size: 125%;
 }
 
-
-@media screen and (max-width: 500px) {
+@media (max-width: 900px) {
     .emp_info_photo, .emp_info_text {
         float: none;
         width: 100%;
         height: 50%;
+        text-align: center;
+        word-break: break-word;
     }
+
     .emp_info_block {
-        height: 800px;
+        height: unset;
     }
 }
