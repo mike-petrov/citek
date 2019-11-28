@@ -17,10 +17,10 @@ class Employers extends React.Component {
 
 	render() {
 		// const { sample } = this.state;
-		
+
 		const text_s = (
 			<div>
-				<p>Старший преподаватель кафедры технологии 
+				<p>Старший преподаватель кафедры технологии
 				   программирования факультета ПМ-ПУ университета СПбГУ</p>
 				<p>Контакты: http://ssevryukov.moikrug.ru/</p>
 			</div>
@@ -48,7 +48,7 @@ class Employers extends React.Component {
 					<div>
 						<div className="emp_info_block">
 							<div className="emp_info_photo">
-								<img src={Sevryukov} class="flexible_image"/>
+								<img src={Sevryukov} className="flexible_image"/>
 								<div className="emp_name">Севрюков Сергей</div>
 								<div className="emp_name">Юрьевич</div>
 							</div>
@@ -60,7 +60,7 @@ class Employers extends React.Component {
 					<div>
 						<div className="emp_info_block">
 							<div className="emp_info_photo">
-								<img src={Blekanov} class="flexible_image"/>
+								<img src={Blekanov} className="flexible_image"/>
 								<div className="emp_name">Блеканов Иван</div>
 								<div className="emp_name">Станиславович</div>
 							</div>
@@ -72,7 +72,7 @@ class Employers extends React.Component {
 					<div>
 						<div className="emp_info_block">
 							<div className="emp_info_photo">
-								<img src={Gorbunov} class="flexible_image"/>
+								<img src={Gorbunov} className="flexible_image"/>
 								<div className="emp_name">Горбунов Владислав</div>
 								<div className="emp_name">Игоревич</div>
 							</div>

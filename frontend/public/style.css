@@ -34,7 +34,7 @@ a {
     font-weight: bold;
     font-size: 30px;
     line-height: 36px;
-    color: #3F3356;
+    color: #aa3f1f;
     text-align: center;
 }
 
@@ -105,17 +105,6 @@ a {
     color: #454545;
 }
 
-.profile_block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile_block .profile_field {
-    font-weight: bold;
-    margin: 10px;
-}
-
 .title_group {
     display: flex;
     justify-content: space-between;
@@ -124,6 +113,7 @@ a {
 
 .title_group i {
     cursor: pointer;
+    color: #aa3f1f;
 }
 
 .popup {

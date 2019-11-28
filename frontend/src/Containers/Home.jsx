@@ -27,7 +27,7 @@ class Home extends React.Component {
 						заинтересованы в компетентных студентах</p>
 					</div>
 					<div className="home_info_photo">
-						<img src={Logo} class="flexible_image"/>
+						<img src={Logo} className="flexible_image"/>
 					</div>
 				</div>
 			</div>

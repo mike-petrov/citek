@@ -60,7 +60,7 @@ class About extends React.Component {
 				<div>
 					<div className="about_info_block">
 						<div className="about_info_photo">
-							<img src={Nikita} class="flexible_image"/>
+							<img src={Nikita} className="flexible_image"/>
 							<div className="about_name">
 								<p>Князев</p>
 								<p>Никита</p>
@@ -74,7 +74,7 @@ class About extends React.Component {
 				<div>
 					<div className="about_info_block">
 						<div className="about_info_photo">
-							<img src={Anastasiia} class="flexible_image"/>
+							<img src={Anastasiia} className="flexible_image"/>
 							<div className="about_name">
 								<p>Тырышкина</p>
 								<p>Анастасия</p>
@@ -88,7 +88,7 @@ class About extends React.Component {
 				<div>
 					<div className="about_info_block">
 						<div className="about_info_photo">
-							<img src={Leonid} class="flexible_image"/>
+							<img src={Leonid} className="flexible_image"/>
 							<div className="about_name">
 								<p>Романычев</p>
 								<p>Леонид</p>
@@ -102,7 +102,7 @@ class About extends React.Component {
 				<div>
 					<div className="about_info_block">
 						<div className="about_info_photo">
-							<img src={Mikhail} class="flexible_image"/>
+							<img src={Mikhail} className="flexible_image"/>
 							<div className="about_name">
 								<p>Петров</p>
 								<p>Михаил</p>
@@ -116,7 +116,7 @@ class About extends React.Component {
 				<div>
 					<div className="about_info_block">
 						<div className="about_info_photo">
-							<img src={Denis} class="flexible_image"/>
+							<img src={Denis} className="flexible_image"/>
 							<div className="about_name">
 								<p>Ковалёв</p>
 								<p>Денис</p>
