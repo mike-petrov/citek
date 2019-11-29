@@ -7,7 +7,8 @@
     align-items: center;
 }
 
-.header a {
+.header .header_content a,
+.header .mobile-menu a {
     height: 50px;
     width: 150px;
     color: white;
@@ -20,7 +21,8 @@
     align-items: center;
 }
 
-.header a:hover {
+.header .header_content a:hover,
+.header .mobile-menu a:hover {
     height: 50px;
     width: 150px;
     color: rgb(170, 63, 31);
@@ -49,9 +51,12 @@
 }
 
 .header_brand {
-    color: #fff;
     font-weight: bold;
     font-size: 22px;
+}
+
+.header_brand a {
+    color: #fff !important;
 }
 
 .mobile-menu {
@@ -165,6 +170,10 @@
 }
 
 @media (max-width: 900px) {
+    .mobile-menu__item {
+        padding-bottom: 0;
+    }
+
     .header_content {
         display: none;
     }
@@ -179,5 +188,20 @@
 
     .header {
         margin: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        min-width: 250px;
+    }
+
+    .card_like_group span {
+        margin: 0 2px;
+    }
+
+    .card_footer .btn {
+        padding: 10px;
+        margin: 5px;
     }
 }

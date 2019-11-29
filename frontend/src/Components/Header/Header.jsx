@@ -15,7 +15,11 @@ const Header = (props) => {
 				))}
 			</div>
 			<div className="header_content_mobile">
-				<div className="header_brand">CITEK</div>
+				<div className="header_brand">
+					<Link to="/projects">
+						CITEK
+					</Link>
+				</div>
 				<nav className="mobile-menu">
                         <input type="checkbox" id="checkbox" className="mobile-menu__checkbox" />
                         <label htmlFor="checkbox" className="mobile-menu__btn">

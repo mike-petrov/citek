@@ -75,17 +75,21 @@ class Project extends React.Component {
 						<div className="project_block">
 							<div className="profile_field">
 								<span className="profile_field_title">Аналитика: </span>
-								<div className="profile_field_diogram">
-									<CircularProgressbar
-										value={'60'}
-										text={`${'60'}%`}
-										circleRatio={0.75}
-										styles={buildStyles({
-											rotation: 1 / 2 + 1 / 8,
-											strokeLinecap: "butt",
-											trailColor: "#eee"
-										})}
-								    />
+									<div className="profile_field_diogram">
+										{arrayProject.github.languages.message === undefined ? (
+											<CircularProgressbar
+												value={Math.floor((arrayProject.github.issues.closed / (arrayProject.github.issues.closed + arrayProject.github.issues.open)) * 100)}
+												text={`${Math.floor((arrayProject.github.issues.closed / (arrayProject.github.issues.closed + arrayProject.github.issues.open)) * 100)}%`}
+												circleRatio={0.75}
+												styles={buildStyles({
+													rotation: 1 / 2 + 1 / 8,
+													strokeLinecap: "butt",
+													trailColor: "#eee"
+												})}
+										    />
+										) : (
+											<div>Слишком много запросов</div>
+										)}
 								</div>
 							</div>
 						</div>
@@ -94,37 +98,41 @@ class Project extends React.Component {
 								<div className="profile_field">
 									<span className="profile_field_title">Статистика: </span>
 									<div className="profile_field_diogram">
-									<Radar
-										width={300}
-										height={300}
-										padding={50}
-										domainMax={10}
-										highlighted={null}
-										data={{
-											variables: [
-												{ key: '1', label: '1' },
-												{ key: '2', label: '2' },
-												{ key: '3', label: '3' },
-												{ key: '4', label: '4' },
-												{ key: '5', label: '5' },
-												{ key: '6', label: '6' },
-											],
-											sets: [
-												{
-													key: 'me',
-													label: 'My Scores',
-													values: {
-														[1]: 4,
-														[2]: 2,
-														[3]: 7,
-														[4]: 2,
-														[5]: 3,
-														[6]: 5,
-													},
-												},
-											],
-										}}
-									/>
+										{arrayProject.github.languages.message === undefined ? (
+											<Radar
+												width={300}
+												height={300}
+												padding={50}
+												domainMax={10}
+												highlighted={null}
+												data={{
+													variables: [
+														{ key: '1', label: '1' },
+														{ key: '2', label: '2' },
+														{ key: '3', label: '3' },
+														{ key: '4', label: '4' },
+														{ key: '5', label: '5' },
+														{ key: '6', label: '6' },
+													],
+													sets: [
+														{
+															key: 'me',
+															label: 'My Scores',
+															values: {
+																[1]: 4,
+																[2]: 2,
+																[3]: 7,
+																[4]: 2,
+																[5]: 3,
+																[6]: 5,
+															},
+														},
+													],
+												}}
+											/>
+										) : (
+											<div>-</div>
+										)}
 									</div>
 								</div>
 							</div>
@@ -132,21 +140,25 @@ class Project extends React.Component {
 								<div className="profile_field">
 									<span className="profile_field_title">Технологии: </span>
 									<div className="profile_field_diogram">
-									<BubbleChart
-										graph={{
-											zoom: 0.5,
-											offsetX: 0.05,
-											offsetY: 0.05,
-										}}
-										width={500}
-										height={400}
-										showLegend={false}
-										data={[
-											{ label: 'JavaScript', value: 1 },
-											{ label: 'Python', value: 3 },
-											{ label: 'PHP', value: 6 },
-										]}
-									/>
+										{arrayProject.github.languages.message === undefined ? (
+											<BubbleChart
+												graph={{
+													zoom: 0.5,
+													offsetX: 0.05,
+													offsetY: 0.05,
+												}}
+												width={500}
+												height={400}
+												showLegend={false}
+												data={[
+													{ label: 'JavaScript', value: 1 },
+													{ label: 'Python', value: 3 },
+													{ label: 'PHP', value: 6 },
+												]}
+											/>
+										) : (
+											<div>-</div>
+										)}
 									</div>
 								</div>
 							</div>
