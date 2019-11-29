@@ -72,6 +72,7 @@ class Projects extends React.Component {
 	}
 
 	render() {
+		const { user } = this.props;
 		const { projects, activePanel, arrayProject } = this.state;
 		return (
 			<div className="content">
@@ -79,9 +80,11 @@ class Projects extends React.Component {
 					<>
 						<div className="title title_group">
 							<span>Проекты</span>
-							<div onClick={() => { this.onChanePanel('create'); }}>
-								<i className="fas fa-plus-circle" />
-							</div>
+							{user.login !== undefined && (
+								<div onClick={() => { this.onChanePanel('create'); }}>
+									<i className="fas fa-plus-circle" />
+								</div>
+							)}
 						</div>
 						{projects.length !== 0 ? (
 							<CardsList

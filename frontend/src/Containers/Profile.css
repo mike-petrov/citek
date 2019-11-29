@@ -1,0 +1,20 @@
+.profile_block {
+    width: 90%;
+    text-align: left;
+    margin: 20px auto;
+    background: #fff;
+    filter: drop-shadow(2px 2px 20px rgba(101, 112, 118, 0.5));
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.profile_block .profile_field {
+    margin: 10px;
+    font-size: 20px;
+}
+
+@media (max-width: 700px) {
+    .profile_block_group {
+        flex-direction: column;
+    }
+}

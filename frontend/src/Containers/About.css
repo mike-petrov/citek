@@ -1,33 +1,13 @@
-/* .about_info_block {
-    display: flex;
-    height: 253px;
-    margin-left: 10%;
-    margin-top: 40px;
-}
-
-.about_info_text {
-    width: 60%;
-    display: flex;
-    padding-left: 10%;
-    font-size: 30pt;
-    align-items: center;
-}
-
-.about_name {
-    padding-left: 10%;
-    height: 30;
-    width: 253px;
-    text-align: center;
-    font-size: 20pt;
-} */
-
 .about_info_block {
     margin-top: 40px;
     height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .about_info_photo {
-    width: 25%;
+    width: 20%;
     height: 100%;
     float: left;
     text-align: center;
@@ -36,11 +16,11 @@
 .about_info_text {
     box-sizing: border-box;
     text-align: center;
-    width: 75%;
+    width: 40%;
     height: 100%;
     padding: 3%;
     float: right;
-    font-size: 200%;
+    font-size: 22px;
 }
 
 .about_name {
@@ -48,14 +28,15 @@
     font-size: 125%;
 }
 
-
 @media screen and (max-width: 900px) {
     .about_info_photo, .about_info_text {
         float: none;
         width: 100%;
         height: 50%;
     }
+
     .about_info_block {
         height: unset;
+        flex-direction: column;
     }
 }

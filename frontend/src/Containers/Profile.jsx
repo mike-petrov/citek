@@ -3,6 +3,8 @@ import React from 'react';
 import Input from '../Components/UI/Input/Input.jsx';
 import Button from '../Components/UI/Button/Button.jsx';
 
+import './Profile.css';
+
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -139,15 +141,31 @@ class Profile extends React.Component {
 						)}
 					</>
 				) : (
-					<div className="profile_block">
-						<div className="profile_field">{`Id: ${user._id}`}</div>
-						<div className="profile_field">{`Имя: ${user.name}`}</div>
-						<div className="profile_field">{`Логин: ${user.login}`}</div>
-						<div className="profile_field">{`Почта: ${user.mail}`}</div>
-						<Button onClick={handlerExit}>
-							Выйти
-						</Button>
-					</div>
+					<>
+						<div className="profile_block">
+							<div className="profile_field">
+								<span className="profile_field_title">Id:</span>
+								<span>{user._id}</span>
+							</div>
+							<div className="profile_field">
+								<span className="profile_field_title">Имя:</span>
+								<span>{user.name}</span>
+							</div>
+							<div className="profile_field">
+								<span className="profile_field_title">Логин:</span>
+								<span>{user.login}</span>
+							</div>
+							<div className="profile_field">
+								<span className="profile_field_title">Почта:</span>
+								<span>{user.mail}</span>
+							</div>
+						</div>
+						<div className="profile_block">
+							<Button onClick={handlerExit}>
+								Выйти
+							</Button>
+						</div>
+					</>
 				)}
 			</div>
 		);
