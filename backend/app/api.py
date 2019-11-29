@@ -3,6 +3,7 @@ from app import app
 import pymongo
 from pymongo import MongoClient
 import json
+import requests
 
 cluster = MongoClient("mongodb+srv://Leonid:Factor_9@cluster0-e2dix.mongodb.net/test?retryWrites=true&w=majority")
 db = cluster['test']
@@ -49,8 +50,32 @@ def update():
 def viewproject():
 	x = request.json
 	res = projects.find_one({'_id': x['id']})
-	t = res['_id']
-#	del res['_id']
+
+	git = res['linkGit']
+	owner_git = git.split('/')[3]
+	project_git = git.split('/')[4]
+
+	main_link_git = 'https://api.github.com/repos/' + owner_git + '/' + project_git
+	open_issues = requests.get(main_link_git + '/issues?state=open').json()
+	closed_issues = requests.get(main_link_git + '/issues?state=closed').json()
+
+	data_git = {
+		'issues': {
+			'open': len(open_issues),
+			'closed': len(closed_issues)
+		},
+		'statistics': {
+			'branches': len(requests.get(main_link_git + '/branches').json()),
+			'assignees': len(requests.get(main_link_git + '/assignees').json()),
+			'labels': len(requests.get(main_link_git + '/labels').json()),
+			'milestones': len(requests.get(main_link_git + '/milestones').json()),
+			'releases': len(requests.get(main_link_git + '/releases').json()),
+			'downloads': len(requests.get(main_link_git + '/downloads').json()),
+		},
+		'languages': requests.get(main_link_git + '/languages').json()
+	}
+	res['github'] = data_git
+
 	return json.dumps(res)
 
 @app.route('/auth', methods=['POST'])
