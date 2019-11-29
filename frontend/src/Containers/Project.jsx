@@ -44,6 +44,7 @@ class Project extends React.Component {
 
 	render() {
 		const { arrayProject } = this.state;
+		console.log(arrayProject);
 		return (
 			<div className="content">
 				<div className="title">Проект</div>
