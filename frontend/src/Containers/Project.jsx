@@ -16,6 +16,7 @@ class Project extends React.Component {
 		super(props);
 		this.state = {
 			arrayProject: [],
+			dataLanguages: [],
 		};
 		this.onRateProject = this.onRateProject.bind(this);
 	}
@@ -27,6 +28,19 @@ class Project extends React.Component {
 		};
 		getProject(arrayOutput).then((res) => {
 			this.setState({ arrayProject: res });
+
+			// { label: 'JavaScript', value: 1 }
+			const keys = Object.keys(res.github.languages);
+			const values = Object.values(res.github.languages);
+			const dataLanguages = [];
+			for (let i = 0; i < keys.length; i += 1) {
+				let array = {
+					label: keys[i],
+					value: values[i]
+				}
+				dataLanguages.push(array);
+			}
+			this.setState({ dataLanguages });
 		});
 	}
 
@@ -43,8 +57,9 @@ class Project extends React.Component {
 	}
 
 	render() {
-		const { arrayProject } = this.state;
+		const { arrayProject, dataLanguages } = this.state;
 		console.log(arrayProject);
+		console.log(dataLanguages);
 		return (
 			<div className="content">
 				<div className="title">Проект</div>
@@ -103,28 +118,28 @@ class Project extends React.Component {
 												width={300}
 												height={300}
 												padding={50}
-												domainMax={10}
+												domainMax={15}
 												highlighted={null}
 												data={{
 													variables: [
-														{ key: '1', label: '1' },
-														{ key: '2', label: '2' },
-														{ key: '3', label: '3' },
-														{ key: '4', label: '4' },
-														{ key: '5', label: '5' },
-														{ key: '6', label: '6' },
+														{ key: 'assignees', label: 'assignees' },
+														{ key: 'milestones', label: 'milestones' },
+														{ key: 'labels', label: 'labels' },
+														{ key: 'releases', label: 'releases' },
+														{ key: 'downloads', label: 'downloads' },
+														{ key: 'branches', label: 'branches' },
 													],
 													sets: [
 														{
 															key: 'me',
 															label: 'My Scores',
 															values: {
-																[1]: 4,
-																[2]: 2,
-																[3]: 7,
-																[4]: 2,
-																[5]: 3,
-																[6]: 5,
+																assignees: arrayProject.github.statistics.assignees,
+																milestones: arrayProject.github.statistics.milestones,
+																labels: arrayProject.github.statistics.labels,
+																releases: arrayProject.github.statistics.releases,
+																downloads: arrayProject.github.statistics.downloads,
+																branches: arrayProject.github.statistics.branches,
 															},
 														},
 													],
@@ -150,11 +165,7 @@ class Project extends React.Component {
 												width={500}
 												height={400}
 												showLegend={false}
-												data={[
-													{ label: 'JavaScript', value: 1 },
-													{ label: 'Python', value: 3 },
-													{ label: 'PHP', value: 6 },
-												]}
+												data={dataLanguages}
 											/>
 										) : (
 											<div>-</div>
