@@ -124,7 +124,7 @@ def create_project():
 	linkGit = x['linkGit']
 
 	post = {
-			'_id': projects.count() + 1,
+			'_id': projects.count() + 2,
 			'name': name,
 			'description': description,
 			'category': category,
