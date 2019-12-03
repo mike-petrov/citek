@@ -45,6 +45,7 @@ class Project extends React.Component {
 	}
 
 	onRateProject(projectId, _type) {
+		const { onPopup } = this.props;
 		const arrayOutput = {
 			id: projectId,
 			type: _type,
@@ -54,43 +55,43 @@ class Project extends React.Component {
 				this.setState({ arrayProject: res });
 			});
 		});
+		onPopup(true, 'successLike')
 	}
 
 	render() {
+		const { user } = this.props;
 		const { arrayProject, dataLanguages } = this.state;
-		console.log(arrayProject);
-		console.log(dataLanguages);
 		return (
 			<div className="content">
 				<div className="title">Проект</div>
 				{arrayProject.length !== 0 ? (
 					<div className="project_blocks">
 						<div className="project_block">
-							<div className="profile_field">
-								<span className="profile_field_title">Название:</span>
+							<div className="project_field">
+								<span className="project_field_title">Название:</span>
 								<span>{arrayProject.name}</span>
 							</div>
-							<div className="profile_field">
-								<span className="profile_field_title">О проекте:</span>
+							<div className="project_field">
+								<span className="project_field_title">О проекте:</span>
 								<span>{arrayProject.description}</span>
 							</div>
-							<div className="profile_field">
-								<span className="profile_field_title">Категория:</span>
-								<span className="profile_field_category">{arrayProject.category}</span>
+							<div className="project_field">
+								<span className="project_field_title">Категория:</span>
+								<span className="project_field_category">{arrayProject.category}</span>
 							</div>
-							<div className="profile_field">
-								<span className="profile_field_title">Статус:</span>
-								<span className="profile_field_status">{arrayProject.status}</span>
+							<div className="project_field">
+								<span className="project_field_title">Статус:</span>
+								<span className="project_field_status">{arrayProject.status}</span>
 							</div>
-							<div className="profile_field">
-								<span className="profile_field_title">GitHub: </span>
+							<div className="project_field">
+								<span className="project_field_title">GitHub: </span>
 								<span><a className="link" href={arrayProject.linkGit}>Ссылка на репозиторий</a></span>
 							</div>
 						</div>
 						<div className="project_block">
-							<div className="profile_field">
-								<span className="profile_field_title">Аналитика: </span>
-									<div className="profile_field_diogram">
+							<div className="project_field">
+								<span className="project_field_title">Аналитика: </span>
+									<div className="project_field_diogram">
 										{arrayProject.github.languages.message === undefined ? (
 											<CircularProgressbar
 												value={Math.floor((arrayProject.github.issues.closed / (arrayProject.github.issues.closed + arrayProject.github.issues.open)) * 100)}
@@ -110,9 +111,9 @@ class Project extends React.Component {
 						</div>
 						<div className="project_block_group">
 							<div className="project_block">
-								<div className="profile_field">
-									<span className="profile_field_title">Статистика: </span>
-									<div className="profile_field_diogram">
+								<div className="project_field">
+									<span className="project_field_title">Статистика: </span>
+									<div className="project_field_diogram">
 										{arrayProject.github.languages.message === undefined ? (
 											<Radar
 												width={300}
@@ -152,9 +153,9 @@ class Project extends React.Component {
 								</div>
 							</div>
 							<div className="project_block">
-								<div className="profile_field">
-									<span className="profile_field_title">Технологии: </span>
-									<div className="profile_field_diogram">
+								<div className="project_field">
+									<span className="project_field_title">Технологии: </span>
+									<div className="project_field_diogram">
 										{arrayProject.github.languages.message === undefined ? (
 											<BubbleChart
 												graph={{
@@ -175,17 +176,31 @@ class Project extends React.Component {
 							</div>
 						</div>
 						<div className="project_block">
-							<div className="profile_field profile_field_flex">
-								<span className="profile_field_title">Оценить проект: </span>
+							<div className="project_field project_field_flex">
+								<span className="project_field_title">Оценить проект: </span>
 								<div className="card_like_group">
-									<span onClick={() => { this.onRateProject(arrayProject._id, 1); }}>
-										<i className="far fa-thumbs-up" />
-										{arrayProject.countLikes}
-									</span>
-									<span onClick={() => { this.onRateProject(arrayProject._id, 0); }}>
-										<i className="far fa-thumbs-down" />
-										{arrayProject.countDislikes}
-									</span>
+									{arrayProject.likes.indexOf(user.mail) === -1 ? (
+										<span onClick={() => { this.onRateProject(arrayProject._id, 1); }}>
+											<i className="far fa-thumbs-up" />
+											{arrayProject.likes.length}
+										</span>
+									) : (
+										<span style={{ background: '#aa3f1f', color: '#fff' }}>
+											<i className="far fa-thumbs-up" />
+											{arrayProject.likes.length}
+										</span>
+									)}
+									{arrayProject.dislikes.indexOf(user.mail) === -1 ? (
+										<span onClick={() => { this.onRateProject(arrayProject._id, 0); }}>
+											<i className="far fa-thumbs-down" />
+											{arrayProject.dislikes.length}
+										</span>
+									) : (
+										<span style={{ background: '#aa3f1f', color: '#fff' }}>
+											<i className="far fa-thumbs-down" />
+											{arrayProject.dislikes.length}
+										</span>
+									)}
 								</div>
 							</div>
 						</div>

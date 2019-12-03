@@ -6,7 +6,7 @@ import './Card.css';
 
 const Card = (props) => {
 	const {
-		project, onRateProject,
+		project, onRateProject, user,
 	} = props;
 	return (
 		<div className="card">
@@ -22,14 +22,28 @@ const Card = (props) => {
 				<div className="card_footer">
 					<Link to={`/project/${project.id}`} className="btn">Подробнее</Link>
 					<div className="card_like_group">
-						<span onClick={() => { onRateProject(project.id, 1); }}>
-							<i className="far fa-thumbs-up" />
-							{project.countLikes}
-						</span>
-						<span onClick={() => { onRateProject(project.id, 0); }}>
-							<i className="far fa-thumbs-down" />
-							{project.countDislikes}
-						</span>
+						{project.likes.indexOf(user.mail) === -1 ? (
+							<span onClick={() => { onRateProject(project.id, 1); }}>
+								<i className="far fa-thumbs-up" />
+								{project.likes.length}
+							</span>
+						) : (
+							<span style={{ background: '#aa3f1f', color: '#fff' }}>
+								<i className="far fa-thumbs-up" />
+								{project.likes.length}
+							</span>
+						)}
+						{project.dislikes.indexOf(user.mail) === -1 ? (
+							<span onClick={() => { onRateProject(project.id, 0); }}>
+								<i className="far fa-thumbs-down" />
+								{project.dislikes.length}
+							</span>
+						) : (
+							<span style={{ background: '#aa3f1f', color: '#fff' }}>
+								<i className="far fa-thumbs-down" />
+								{project.dislikes.length}
+							</span>
+						)}
 					</div>
 				</div>
 			</div>

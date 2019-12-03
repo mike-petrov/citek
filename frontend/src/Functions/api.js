@@ -4,7 +4,9 @@ import axios from 'axios';
 //const server = 'http://4cc7c665.ngrok.io'; // localhost
 
 function serverRequest(link, json = {}) {
-    // json.name = 'Leonid';
+    if (JSON.parse(localStorage.getItem('user')).mail !== undefined) {
+        json.user_mail = JSON.parse(localStorage.getItem('user')).mail;
+    }
     return axios.post(server + link, json);
 }
 

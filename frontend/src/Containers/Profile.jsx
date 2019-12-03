@@ -29,6 +29,16 @@ class Profile extends React.Component {
 		this.onChangePanel = this.onChangePanel.bind(this);
 	}
 
+	componentWillMount() {
+		const { user } = this.state;
+		// Определение пользователя
+		if (localStorage.getItem('user') !== null) {
+			this.setState({ user: JSON.parse(localStorage.getItem('user')) });
+		} else {
+			localStorage.setItem('user', JSON.stringify(user));
+		}
+	}
+
 	onChangePanel(_panel) {
 		this.setState({ activePanel: _panel });
 	}
@@ -160,10 +170,27 @@ class Profile extends React.Component {
 								<span>{user.mail}</span>
 							</div>
 						</div>
+						{/*
 						<div className="profile_block">
-							<Button onClick={handlerExit}>
-								Выйти
-							</Button>
+							<div className="profile_field">
+								<span className="profile_field_title">Понравившиеся проекты:</span>
+								<div className="profile_field_block">
+									{user.likes.map((project) => (
+										<span key={project}>{project}</span>
+									))}
+									{user.likes.length === 0 && (
+										<span>-</span>
+									)}
+								</div>
+							</div>
+						</div>
+						*/}
+						<div className="profile_block">
+							<div className="profile_field_block">
+								<Button onClick={handlerExit}>
+									Выйти
+								</Button>
+							</div>
 						</div>
 					</>
 				)}
