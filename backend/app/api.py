@@ -26,16 +26,19 @@ def update():
 	x = request.json
 
 	projectId = x['id']
+	userMail = x['user_mail']
 
 	flag = x['type']
 	if flag:
-		p = projects.find_one({'_id': projectId})
-		like = p['countLikes']
-		projects.update_one({'_id': projectId}, {'$set':{ 'countLikes': like + 1}})
+		projects.update_one({'_id': projectId}, {'$push':{ 'likes': userMail }})
+		users.update_one({'mail': userMail}, {'$push':{ 'likes': projectId }})
+		projects.update_one({'_id': projectId}, {'$pull':{ 'dislikes': userMail }})
+		users.update_one({'mail': userMail}, {'$pull':{ 'dislikes': projectId }})
 	else:
-		p = projects.find_one({'_id': projectId})
-		like = p['countDislikes']
-		projects.update_one({'_id': projectId}, {'$set':{ 'countDislikes': like + 1}})
+		users.update_one({'mail': userMail}, {'$push':{ 'dislikes': projectId }})
+		projects.update_one({'_id': projectId}, {'$push':{ 'dislikes': userMail }})
+		projects.update_one({'_id': projectId}, {'$pull':{ 'likes': userMail }})
+		users.update_one({'mail': userMail}, {'$pull':{ 'likes': projectId }})
 
 	ans = []
 	results = projects.find({})
@@ -56,8 +59,8 @@ def viewproject():
 	project_git = git.split('/')[4]
 
 	main_link_git = 'https://api.github.com/repos/' + owner_git + '/' + project_git
-	open_issues = requests.get(main_link_git + '/issues?state=open').json()
-	closed_issues = requests.get(main_link_git + '/issues?state=closed').json()
+	open_issues = requests.get(main_link_git + '/issues?state=open', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()
+	closed_issues = requests.get(main_link_git + '/issues?state=closed', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()
 
 	data_git = {
 		'issues': {
@@ -65,14 +68,14 @@ def viewproject():
 			'closed': len(closed_issues)
 		},
 		'statistics': {
-			'branches': len(requests.get(main_link_git + '/branches').json()),
-			'assignees': len(requests.get(main_link_git + '/assignees').json()),
-			'labels': len(requests.get(main_link_git + '/labels').json()),
-			'milestones': len(requests.get(main_link_git + '/milestones').json()),
-			'releases': len(requests.get(main_link_git + '/releases').json()),
-			'downloads': len(requests.get(main_link_git + '/downloads').json()),
+			'branches': len(requests.get(main_link_git + '/branches', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()),
+			'assignees': len(requests.get(main_link_git + '/assignees', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()),
+			'labels': len(requests.get(main_link_git + '/labels', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()),
+			'milestones': len(requests.get(main_link_git + '/milestones', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()),
+			'releases': len(requests.get(main_link_git + '/releases', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()),
+			'downloads': len(requests.get(main_link_git + '/downloads', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()),
 		},
-		'languages': requests.get(main_link_git + '/languages').json()
+		'languages': requests.get(main_link_git + '/languages', auth=('mike-petrov', 'dbc9ed55153fb49e72ef05d36f37c341a06a9ee4')).json()
 	}
 	res['github'] = data_git
 
@@ -105,7 +108,7 @@ def registration():
 	if users.find_one({'mail': mail}):
 		return json.dumps({'error': 'mail'})
 
-	post = {'_id': users.count() + 1, 'login': login, 'password': password, 'name': name, 'mail': mail, 'status': status}
+	post = {'_id': users.count() + 1, 'login': login, 'password': password, 'name': name, 'mail': mail, 'status': status, 'likes': [], 'dislikes': []}
 
 	users.insert_one(post)
 
@@ -119,20 +122,18 @@ def create_project():
 	description = x['description']
 	category = x['category']
 	status = x['status']
-	countLikes = 0
-	countDislikes = 0
 	linkGit = x['linkGit']
 
 	post = {
-			'_id': projects.count() + 2,
-			'name': name,
-			'description': description,
-			'category': category,
-	 		'status': status,
-			'countLikes': countLikes,
-			'countDislikes': countDislikes,
-			'linkGit': linkGit
-			}
+		'_id': projects.count() + 2,
+		'name': name,
+		'description': description,
+		'category': category,
+ 		'status': status,
+		'likes': [],
+		'dislikes': [],
+		'linkGit': linkGit
+	}
 
 	projects.insert_one(post)
 
