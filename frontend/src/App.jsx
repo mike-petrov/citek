@@ -134,6 +134,7 @@ export default class App extends React.Component {
 						</Route>
 						<Route exact path="/project/:projectId">
 							<Project
+								user={user}
 								onPopup={this.onPopup}
 								onRedirect={this.onRedirect}
 							/>

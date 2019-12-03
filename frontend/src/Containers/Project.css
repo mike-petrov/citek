@@ -30,32 +30,32 @@
     border-radius: 20px;
 }
 
-.profile_field_diogram {
+.project_field_diogram {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.project_block .profile_field {
+.project_block .project_field {
     margin: 10px;
     font-size: 20px;
 }
 
-.profile_field_title {
+.project_field_title {
     font-weight: bold;
     color: #aa3f1f;
     margin-right: 10px;
     font-size: 22px;
 }
 
-.profile_field_category {
+.project_field_category {
     padding: 3px 8px;
     background: rgb(101, 112, 118);
     color: #fff;
     border-radius: 4px;
 }
 
-.profile_field_flex {
+.project_field_flex {
     display: flex;
     align-items: center;
 }

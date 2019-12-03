@@ -35,6 +35,7 @@ class Projects extends React.Component {
 	}
 
 	onRateProject(projectId, _type) {
+		const { onPopup } = this.props;
 		const arrayOutput = {
 			id: projectId,
 			type: _type,
@@ -42,6 +43,7 @@ class Projects extends React.Component {
 		rateProject(arrayOutput).then((res) => {
 			this.setState({ projects: res });
 		});
+		onPopup(true, 'successLike')
 	}
 
 	onCreate(_event, project) {
@@ -89,6 +91,7 @@ class Projects extends React.Component {
 						{projects.length !== 0 ? (
 							<CardsList
 								projects={projects}
+								user={user}
 								onRateProject={this.onRateProject}
 							/>
 						) : (

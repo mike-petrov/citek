@@ -6,7 +6,7 @@ import './CardsList.css';
 
 const CardsList = (props) => {
 	const {
-		projects, onRateProject,
+		projects, onRateProject, user
 	} = props;
 	return (
 		<div className="card_list">
@@ -14,6 +14,7 @@ const CardsList = (props) => {
 				<Card
 					key={item.id}
 					project={item}
+					user={user}
 					onRateProject={onRateProject}
 				/>
 			))}
