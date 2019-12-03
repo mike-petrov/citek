@@ -13,6 +13,19 @@
     font-size: 20px;
 }
 
+.profile_field_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_field_title {
+    font-weight: bold;
+    color: #aa3f1f;
+    margin-right: 10px;
+    font-size: 22px;
+}
+
 @media (max-width: 700px) {
     .profile_block_group {
         flex-direction: column;
