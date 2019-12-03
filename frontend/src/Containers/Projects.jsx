@@ -36,14 +36,18 @@ class Projects extends React.Component {
 
 	onRateProject(projectId, _type) {
 		const { onPopup } = this.props;
-		const arrayOutput = {
-			id: projectId,
-			type: _type,
-		};
-		rateProject(arrayOutput).then((res) => {
-			this.setState({ projects: res });
-		});
-		onPopup(true, 'successLike')
+		if (JSON.parse(localStorage.getItem('user')).mail !== undefined) {
+			const arrayOutput = {
+				id: projectId,
+				type: _type,
+			};
+			rateProject(arrayOutput).then((res) => {
+				this.setState({ projects: res });
+			});
+			onPopup(true, 'successLike');
+	    } else {
+			onPopup(true, 'accessLike');
+		}
 	}
 
 	onCreate(_event, project) {

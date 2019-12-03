@@ -27,6 +27,15 @@ class Popup extends React.Component {
 						</div>
 					</div>
 				)}
+				{showPopup.current === 'accessLike' && (
+					<div className="popup">
+						<div className="popup_close_panel" onClick={() => { onPopup(false, null); }} />
+						<div className="popup_content">
+							<div className="popup_close" onClick={() => { onPopup(false); }}><i className="fas fa-times" /></div>
+							Войдите в аккаунт чтобы оценить проект
+						</div>
+					</div>
+				)}
 			</>
 		);
 	}
