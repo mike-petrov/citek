@@ -4,6 +4,8 @@ import pymongo
 from pymongo import MongoClient
 import json
 import requests
+import time
+
 
 cluster = MongoClient("mongodb+srv://Leonid:Factor_9@cluster0-e2dix.mongodb.net/test?retryWrites=true&w=majority")
 db = cluster['test']
@@ -22,8 +24,18 @@ def post():
 	return json.dumps(ans)
 
 @app.route('/projects/filter', methods=['POST'])
-def post():
-	results = projects.find({})
+def filter():
+	x = request.json
+
+	timestamp = x['timestamp']
+	type = x['type']
+
+	if type == 'last':
+		results = projects.find({ 'date': {'$lt': timestamp}},{})
+	elif type == 'current':
+		results = projects.find({ '$and' : [{'date' : {'$gt': timestamp[0]}},{'date': {'$lt': timestamp[1]}}] },{})
+	else:
+		results = projects.find({ 'date': {'$gt': timestamp}},{})
 	ans = []
 	for result in results:
 		t = result['_id']
@@ -143,7 +155,8 @@ def create_project():
  		'status': status,
 		'likes': [],
 		'dislikes': [],
-		'linkGit': linkGit
+		'linkGit': linkGit,
+		'date': int(time.time()),
 	}
 
 	projects.insert_one(post)
