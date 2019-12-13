@@ -17,9 +17,6 @@ def post():
 	results = projects.find({})
 	ans = []
 	for result in results:
-		t = result['_id']
-		del result['_id']
-		result['id'] = int(t)
 		ans.append(result)
 	return json.dumps(ans)
 
@@ -50,29 +47,26 @@ def update():
 
 	flag = x['type']
 	if flag:
-		projects.update_one({'_id': projectId}, {'$push':{ 'likes': userMail }})
+		projects.update_one({'id': projectId}, {'$push':{ 'likes': userMail }})
 		users.update_one({'mail': userMail}, {'$push':{ 'likes': projectId }})
-		projects.update_one({'_id': projectId}, {'$pull':{ 'dislikes': userMail }})
+		projects.update_one({'id': projectId}, {'$pull':{ 'dislikes': userMail }})
 		users.update_one({'mail': userMail}, {'$pull':{ 'dislikes': projectId }})
 	else:
 		users.update_one({'mail': userMail}, {'$push':{ 'dislikes': projectId }})
-		projects.update_one({'_id': projectId}, {'$push':{ 'dislikes': userMail }})
-		projects.update_one({'_id': projectId}, {'$pull':{ 'likes': userMail }})
+		projects.update_one({'id': projectId}, {'$push':{ 'dislikes': userMail }})
+		projects.update_one({'id': projectId}, {'$pull':{ 'likes': userMail }})
 		users.update_one({'mail': userMail}, {'$pull':{ 'likes': projectId }})
 
 	ans = []
 	results = projects.find({})
 	for result in results:
-		t = result['_id']
-		del result['_id']
-		result['id'] = int(t)
 		ans.append(result)
 	return json.dumps(ans)
 
 @app.route('/project', methods=['POST'])
 def viewproject():
 	x = request.json
-	res = projects.find_one({'_id': x['id']})
+	res = projects.find_one({'id': x['id']})
 
 	git = res['linkGit']
 	owner_git = git.split('/')[3]
@@ -145,7 +139,7 @@ def create_project():
 	linkGit = x['linkGit']
 
 	post = {
-		'_id': projects.count() + 2,
+		'id': projects.count() + 2,
 		'name': name,
 		'description': description,
 		'category': category,
