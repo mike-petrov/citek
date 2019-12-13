@@ -21,6 +21,17 @@ def post():
 		ans.append(result)
 	return json.dumps(ans)
 
+@app.route('/projects/filter', methods=['POST'])
+def post():
+	results = projects.find({})
+	ans = []
+	for result in results:
+		t = result['_id']
+		del result['_id']
+		result['id'] = int(t)
+		ans.append(result)
+	return json.dumps(ans)
+
 @app.route('/project/like', methods=['POST'])
 def update():
 	x = request.json
