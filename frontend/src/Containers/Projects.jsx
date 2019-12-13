@@ -140,10 +140,6 @@ class Projects extends React.Component {
 									<div onClick={() => { this.onFilter('current'); }}>Новые</div>
 									<div onClick={() => { this.onFilter('future'); }}>Будущие</div>
 								</div>
-								<div className="filter">Параметры</div>
-								<div className="filter_block_params">
-									1
-								</div>
 							</>
 						)}
 						{projects.length !== 0 ? (
