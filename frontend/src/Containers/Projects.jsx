@@ -34,7 +34,7 @@ class Projects extends React.Component {
 	}
 
 	onFilter(_type) {
-		getProjectsFilter(_type).then((res) => {
+		getProjectsFilter({ type: _type }).then((res) => {
 			this.setState({ projects: res });
         });
 	}

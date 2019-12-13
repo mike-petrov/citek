@@ -1,4 +1,4 @@
-мimport axios from 'axios';
+import axios from 'axios';
 
  const server = 'https://askpro.online/api'; // server
 //const server = 'http://4cc7c665.ngrok.io'; // localhost
@@ -18,7 +18,7 @@ export function getProjects() {
 	});
 }
 
-export function getProjectsFilter() {
+export function getProjectsFilter(json) {
 	return new Promise((resolve) => {
         serverRequest('/projects/filter', json).then((res) => {
             resolve(res.data);
