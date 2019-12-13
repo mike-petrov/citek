@@ -184,7 +184,7 @@ class Project extends React.Component {
 								<span className="project_field_title">Оценить проект: </span>
 								<div className="card_like_group">
 									{arrayProject.likes.indexOf(user.mail) === -1 ? (
-										<span onClick={() => { this.onRateProject(arrayProject._id, 1); }}>
+										<span onClick={() => { this.onRateProject(arrayProject.id, 1); }}>
 											<i className="far fa-thumbs-up" />
 											{arrayProject.likes.length}
 										</span>
@@ -195,7 +195,7 @@ class Project extends React.Component {
 										</span>
 									)}
 									{arrayProject.dislikes.indexOf(user.mail) === -1 ? (
-										<span onClick={() => { this.onRateProject(arrayProject._id, 0); }}>
+										<span onClick={() => { this.onRateProject(arrayProject.id, 0); }}>
 											<i className="far fa-thumbs-down" />
 											{arrayProject.dislikes.length}
 										</span>

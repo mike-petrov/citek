@@ -78,3 +78,9 @@
 .card_like_group span i {
     margin-right: 5px;
 }
+
+@media (max-width: 1200px) {
+    .card_header {
+        font-size: 12px;
+    }
+}

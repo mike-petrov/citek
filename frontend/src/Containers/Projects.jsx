@@ -20,6 +20,7 @@ class Projects extends React.Component {
 				linkGit: '',
 			},
 			filterPanel: false,
+			loaded: false,
 		};
 		this.onCreate = this.onCreate.bind(this);
 		this.onRateProject = this.onRateProject.bind(this);
@@ -28,8 +29,9 @@ class Projects extends React.Component {
 	}
 
 	componentWillMount() {
+		this.setState({ loaded: false });
 		getProjects().then((res) => {
-			this.setState({ projects: res });
+			this.setState({ projects: res, loaded: true });
         });
 	}
 
@@ -46,10 +48,9 @@ class Projects extends React.Component {
 		} else if (_type === 'future') {
 			timestamp = new Date(year + 1, 0, 1, 0, 0, 0, 0).getTime()/1000;
 		}
-		console.log(timestamp);
+		this.setState({ loaded: false });
 		getProjectsFilter({ type: _type, timestamp }).then((res) => {
-			console.log(res);
-			this.setState({ projects: res });
+			this.setState({ projects: res, loaded: true });
         });
 	}
 
@@ -106,7 +107,7 @@ class Projects extends React.Component {
 
 	render() {
 		const { user } = this.props;
-		const { projects, activePanel, arrayProject, filterPanel } = this.state;
+		const { projects, activePanel, arrayProject, filterPanel, loaded} = this.state;
 		return (
 			<div className="content">
 				{activePanel === 'projects' ? (
@@ -152,7 +153,13 @@ class Projects extends React.Component {
 								onRateProject={this.onRateProject}
 							/>
 						) : (
-							<Loader />
+							<>
+								{loaded ? (
+									<div className="not_found">Не найдено</div>
+								) : (
+									<Loader />
+								)}
+							</>
 						)}
 					</>
 				) : (

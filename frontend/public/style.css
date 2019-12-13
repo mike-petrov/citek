@@ -243,6 +243,11 @@ a {
     background: #fff;
 }
 
+.not_found {
+    text-align: center;
+    font-size: 30px;
+}
+
 @media (max-width: 1000px) {
     html {
         background-size: unset;
