@@ -31,16 +31,13 @@ def filter():
 	type = x['type']
 
 	if type == 'last':
-		results = projects.find({ 'date': {'$lt': timestamp}},{})
+		results = projects.find({ 'date': {'$lt': timestamp}},{'_id': False})
 	elif type == 'current':
-		results = projects.find({ '$and' : [{'date' : {'$gt': timestamp[0]}},{'date': {'$lt': timestamp[1]}}] },{})
+		results = projects.find({ '$and' : [{'date' : {'$gt': timestamp[0]}},{'date': {'$lt': timestamp[1]}}] },{'_id': False})
 	else:
-		results = projects.find({ 'date': {'$gt': timestamp}},{})
+		results = projects.find({ 'date': {'$gt': timestamp}},{ '_id': False})
 	ans = []
 	for result in results:
-		t = result['_id']
-		del result['_id']
-		result['id'] = int(t)
 		ans.append(result)
 	return json.dumps(ans)
 
