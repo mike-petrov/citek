@@ -34,7 +34,21 @@ class Projects extends React.Component {
 	}
 
 	onFilter(_type) {
-		getProjectsFilter({ type: _type }).then((res) => {
+		let timestamp;
+		const year = new Date().getFullYear();
+		if (_type === 'last') {
+			timestamp = new Date(year, 0, 1, 0, 0, 0, 0).getTime()/1000;
+		} else if (_type === 'current') {
+			timestamp = [
+				new Date(year, 0, 1, 0, 0, 0, 0).getTime()/1000,
+				new Date(year + 1, 0, 1, 0, 0, 0, 0).getTime()/1000,
+			];
+		} else if (_type === 'future') {
+			timestamp = new Date(year + 1, 0, 1, 0, 0, 0, 0).getTime()/1000;
+		}
+		console.log(timestamp);
+		getProjectsFilter({ type: _type, timestamp }).then((res) => {
+			console.log(res);
 			this.setState({ projects: res });
         });
 	}
