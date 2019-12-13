@@ -4,7 +4,7 @@ import Input from '../Components/UI/Input/Input.jsx';
 import Loader from '../Components/UI/Loader/Loader.jsx';
 import CardsList from '../Components/CardsList/CardsList.jsx';
 
-import { getProjects, createProject, rateProject } from '../Functions/api';
+import { getProjects, createProject, rateProject, getProjectsFilter } from '../Functions/api';
 
 class Projects extends React.Component {
 	constructor(props) {
@@ -19,9 +19,12 @@ class Projects extends React.Component {
 				status: '',
 				linkGit: '',
 			},
+			filterPanel: false,
 		};
 		this.onCreate = this.onCreate.bind(this);
 		this.onRateProject = this.onRateProject.bind(this);
+		this.onChangeFilterPanel = this.onChangeFilterPanel.bind(this);
+		this.onFilter = this.onFilter.bind(this);
 	}
 
 	componentWillMount() {
@@ -30,8 +33,18 @@ class Projects extends React.Component {
         });
 	}
 
-	onChanePanel(_panel) {
+	onFilter(_type) {
+		getProjectsFilter(_type).then((res) => {
+			this.setState({ projects: res });
+        });
+	}
+
+	onChangePanel(_panel) {
 		this.setState({ activePanel: _panel });
+	}
+
+	onChangeFilterPanel(_panel) {
+		this.setState({ filterPanel: _panel });
 	}
 
 	onRateProject(projectId, _type) {
@@ -57,7 +70,7 @@ class Projects extends React.Component {
 			getProjects().then((res) => {
 				this.setState({ projects: res });
 			});
-			this.onChanePanel('projects');
+			this.onChangePanel('projects');
 		});
 		_event.preventDefault();
 	}
@@ -79,19 +92,45 @@ class Projects extends React.Component {
 
 	render() {
 		const { user } = this.props;
-		const { projects, activePanel, arrayProject } = this.state;
+		const { projects, activePanel, arrayProject, filterPanel } = this.state;
 		return (
 			<div className="content">
 				{activePanel === 'projects' ? (
 					<>
 						<div className="title title_group">
-							<span>Проекты</span>
+							<div>
+								<span>Проекты</span>
+								{!filterPanel && (
+									<span id="filter" onClick={() => { this.onChangeFilterPanel(true); }}>
+										<i className="fas fa-filter" />
+									</span>
+								)}
+							</div>
 							{user.login !== undefined && (
-								<div onClick={() => { this.onChanePanel('create'); }}>
+								<div onClick={() => { this.onChangePanel('create'); }}>
 									<i className="fas fa-plus-circle" />
 								</div>
 							)}
 						</div>
+						{filterPanel && (
+							<>
+								<div className="filter title_group">
+									<span>Фильтр</span>
+									<div onClick={() => { this.onChangeFilterPanel(false); }}>
+										<i className="fas fa-times" />
+									</div>
+								</div>
+								<div className="filter_block_tags">
+									<div onClick={() => { this.onFilter('last'); }}>Прошлогодние</div>
+									<div onClick={() => { this.onFilter('current'); }}>Новые</div>
+									<div onClick={() => { this.onFilter('future'); }}>Будущие</div>
+								</div>
+								<div className="filter">Параметры</div>
+								<div className="filter_block_params">
+									1
+								</div>
+							</>
+						)}
 						{projects.length !== 0 ? (
 							<CardsList
 								projects={projects}
@@ -106,7 +145,7 @@ class Projects extends React.Component {
 					<>
 						<div className="title title_group">
 							<span>Создать</span>
-							<div onClick={() => { this.onChanePanel('projects'); }}>
+							<div onClick={() => { this.onChangePanel('projects'); }}>
 								<i className="fas fa-times-circle" />
 							</div>
 						</div>

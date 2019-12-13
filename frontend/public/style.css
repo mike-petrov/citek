@@ -209,6 +209,40 @@ a {
     border: 3px solid rgb(170, 63, 31);
 }
 
+#filter {
+    margin-left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.filter {
+    margin: 10px 40px;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 22px;
+    color: #aa3f1f;
+}
+
+.filter_block_tags,
+.filter_block_params {
+    margin: 10px 40px;
+    display: flex;
+    align-items: center;
+}
+
+.filter_block_tags div {
+    background: #657076;
+    color: #Fff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin: 5px 20px;
+    cursor: pointer;
+}
+
+.filter_block_params div {
+    background: #fff;
+}
+
 @media (max-width: 1000px) {
     html {
         background-size: unset;
