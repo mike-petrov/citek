@@ -26,6 +26,20 @@
     font-size: 22px;
 }
 
+.btn_vk, .btn_vk:hover {
+    background-color: #517299;
+    display: block;
+    margin-bottom: 10px !important;
+}
+
+.btn_vk img {
+    width: 20px;
+    height: auto;
+    margin: 0;
+    cursor: pointer;
+    transition: unset;
+}
+
 @media (max-width: 700px) {
     .profile_block_group {
         flex-direction: column;

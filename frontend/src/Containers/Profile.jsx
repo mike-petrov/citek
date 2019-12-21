@@ -98,6 +98,9 @@ class Profile extends React.Component {
 									onChange={(_e) => { this.handleAuthUser(_e, 'password'); }}
 									required
 								/>
+								<a href="https://oauth.vk.com/authorize?client_id=7255889&display=popup&redirect_uri=https://askpro.online/callback&scope=8&response_type=code&v=5.103" className="btn btn_vk" onClick={() => { localStorage.setItem('previousPath', document.location.pathname + document.location.search); }}>
+									<img src="/img/vk_logo.png" alt="" />
+								</a>
 								<Input
 									className="btn"
 									type="submit"
@@ -141,6 +144,9 @@ class Profile extends React.Component {
 									onChange={(_e) => { this.handleRegUser(_e, 'password'); }}
 									required
 								/>
+								<a href="https://oauth.vk.com/authorize?client_id=7255889&display=popup&redirect_uri=https://askpro.online/callback&scope=8&response_type=code&v=5.103" className="btn btn_vk" onClick={() => { localStorage.setItem('previousPath', document.location.pathname + document.location.search); }}>
+									<img src="/img/vk_logo.png" alt="" />
+								</a>
 								<Input
 									className="btn"
 									type="submit"
