@@ -10,7 +10,7 @@ import Project from './Containers/Project.jsx';
 import Employers from './Containers/Employers.jsx';
 import About from './Containers/About.jsx';
 import Profile from './Containers/Profile.jsx';
-import Callback from './Components/Callback/Callback.jsx';
+import Callback from './Containers/Callback.jsx';
 
 import Header from './Components/Header/Header.jsx';
 import Footer from './Components/Footer/Footer.jsx';

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { authSocialAccount } from '../../func/methods';
-import Loader from '../../Components/Loader/Loader.jsx';
+import { authSocialAccount } from '../Functions/api';
 
 
 class Callback extends React.Component {
@@ -32,7 +31,7 @@ class Callback extends React.Component {
 	render() {
 		return (
 			<div className="module">
-				<Loader />
+				Авторизация
 			</div>
 		);
 	}
