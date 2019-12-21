@@ -10,6 +10,7 @@ import Project from './Containers/Project.jsx';
 import Employers from './Containers/Employers.jsx';
 import About from './Containers/About.jsx';
 import Profile from './Containers/Profile.jsx';
+import Callback from './Components/Callback/Callback.jsx';
 
 import Header from './Components/Header/Header.jsx';
 import Footer from './Components/Footer/Footer.jsx';
@@ -37,6 +38,7 @@ export default class App extends React.Component {
 		this.onAuth = this.onAuth.bind(this);
 		this.onReg = this.onReg.bind(this);
 		this.handlerExit = this.handlerExit.bind(this);
+		this.onUpdateUserProperties = this.onUpdateUserProperties.bind(this);
 	}
 
 	componentWillMount() {
@@ -77,6 +79,11 @@ export default class App extends React.Component {
 			}
         });
 		_event.preventDefault();
+	}
+
+	onUpdateUserProperties(user) {
+		this.setState({ user });
+		localStorage.setItem('user', JSON.stringify(user));
 	}
 
 	onReg(_event, user) {
@@ -159,6 +166,12 @@ export default class App extends React.Component {
 								handlerExit={this.handlerExit}
 								onAuth={this.onAuth}
 								onReg={this.onReg}
+							/>
+						</Route>
+						<Route exact path="/callback">
+							<Callback
+								onRedirect={this.onRedirect}
+								onUpdateUserProperties={this.onUpdateUserProperties}
 							/>
 						</Route>
 					</Switch>
