@@ -118,11 +118,27 @@ def auth_social():
 	link = 'https://oauth.vk.com/access_token?client_id=7255889&client_secret=F0PyYJDM8rGmzapJAxMl&redirect_uri=https://askpro.online/callback&code={}'
 	response = json.loads(requests.get(link.format(code)).text)
 
-	print(response['user_id'])
 	link_access = 'https://api.vk.com/method/users.get?user_ids={}&fields=nickname&access_token={}&v=5.103'
 	response_access = json.loads(requests.get(link_access.format(response['user_id'], response['access_token'])).text)['response'][0]
 
-	return json.dumps(response_access)
+	person = users.find_one({'login': response_access['id']})
+
+	if person:
+		return json.dumps(person)
+	else:
+		post = {
+			'_id': users.count() + 1,
+			'login': response_access['id'],
+			'password': response_access['id'],
+			'name': response_access['first_name'],
+			'mail': '',
+			'status': 'user',
+			'likes': [],
+			'dislikes': []
+		}
+		users.insert_one(post)
+
+	return json.dumps(post)
 
 
 @app.route('/reg', methods=['POST'])
