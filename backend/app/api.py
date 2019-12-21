@@ -114,7 +114,13 @@ def authorization():
 def auth_social():
 	x = request.json
 	code = x['code']
-	print(code)
+
+	link = 'https://oauth.vk.com/access_token?client_id=7255889&client_secret=F0PyYJDM8rGmzapJAxMl&redirect_uri=https://askpro.online/callback&code={}'
+	response = json.loads(requests.get(link.format(code)).text)
+	print(response)
+
+	return true
+
 
 @app.route('/reg', methods=['POST'])
 def registration():
