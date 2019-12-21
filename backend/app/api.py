@@ -110,6 +110,12 @@ def authorization():
 	else:
 		return json.dumps(person)
 
+@app.route('/social', methods=['POST'])
+def auth_social():
+	x = request.json
+	code = x['code']
+	print(code)
+
 @app.route('/reg', methods=['POST'])
 def registration():
 	x = request.json
