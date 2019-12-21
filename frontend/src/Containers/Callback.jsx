@@ -5,11 +5,7 @@ import { authSocialAccount } from '../Functions/api';
 
 class Callback extends React.Component {
 	componentWillMount() {
-		const { user, onRedirect } = this.props;
-
-		if (user.id === undefined || (user.id !== undefined && user.id === 0)) {
-			onRedirect('/');
-		}
+		const { onRedirect } = this.props;
 
 		const code = document.location.search.split('&')[0].split('=')[1];
 
