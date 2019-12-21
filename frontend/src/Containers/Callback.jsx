@@ -16,9 +16,9 @@ class Callback extends React.Component {
 		this.onSocial(code);
 	}
 
-	onSocial(type, code) {
+	onSocial(code) {
 		const { onRedirect, onUpdateUserProperties } = this.props;
-		authSocialAccount(this, { code }).then((_e) => {
+		authSocialAccount({ code }).then((_e) => {
 			onUpdateUserProperties(_e);
 			onRedirect(localStorage.getItem('previousPath'));
 		});
