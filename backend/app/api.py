@@ -7,7 +7,8 @@ import requests
 import time
 
 
-cluster = MongoClient("mongodb+srv://Leonid:Factor_9@cluster0-e2dix.mongodb.net/test?retryWrites=true&w=majority")
+
+cluster = MongoClient("mongodb+srv://Leonid:Factor_9@cluster0-e2dix.mongodb.net/test?retryWrites=true&w=majority", connect = False )
 db = cluster['test']
 projects = db['projects']
 users = db['users']
@@ -43,10 +44,22 @@ def update():
 	x = request.json
 
 	projectId = x['id']
+	name_project = projects.find_one({'id': projectId})['name']
 	userMail = x['user_mail']
+	user = users.find_one({'mail': userMail})
+	name_user = user['name']
 
 	flag = x['type']
-	if flag:
+	if flag:#like
+		phone = user['phone']
+		if(phone != ''):
+			data = {
+				'phoneNumber': phone,
+				'message': f'Ваш проект {name_project} понравился пользователю с именем {name_user}. Вы можете связаться с ним по почте {userMail}'
+			}
+			#print(data)
+			response = requests.post('https://7mdsba9mil.execute-api.us-east-1.amazonaws.com/newStage/userinfo', json=data, headers={'Content-type': 'application/json'})
+
 		projects.update_one({'id': projectId}, {'$push':{ 'likes': userMail }})
 		users.update_one({'mail': userMail}, {'$push':{ 'likes': projectId }})
 		projects.update_one({'id': projectId}, {'$pull':{ 'dislikes': userMail }})
