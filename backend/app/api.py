@@ -131,7 +131,7 @@ def auth_social():
 			'login': response_access['id'],
 			'password': response_access['id'],
 			'name': response_access['first_name'],
-			'mail': '',
+			'mail': '-',
 			'status': 'user',
 			'likes': [],
 			'dislikes': []
@@ -153,7 +153,16 @@ def registration():
 	if users.find_one({'mail': mail}):
 		return json.dumps({'error': 'mail'})
 
-	post = {'_id': users.count() + 1, 'login': login, 'password': password, 'name': name, 'mail': mail, 'status': status, 'likes': [], 'dislikes': []}
+	post = {
+		'_id': users.count() + 1,
+		'login': login,
+		'password': password,
+		'name': name,
+		'mail': mail,
+		'status': status,
+		'likes': [],
+		'dislikes': []
+	}
 
 	users.insert_one(post)
 
