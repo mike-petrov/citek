@@ -1,0 +1,47 @@
+.profile_block {
+    width: 90%;
+    text-align: left;
+    margin: 20px auto;
+    background: #fff;
+    filter: drop-shadow(2px 2px 20px rgba(101, 112, 118, 0.5));
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.profile_block .profile_field {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.profile_field_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_field_title {
+    font-weight: bold;
+    color: #aa3f1f;
+    margin-right: 10px;
+    font-size: 22px;
+}
+
+.btn_vk, .btn_vk:hover {
+    background-color: #517299;
+    display: block;
+    margin-bottom: 10px !important;
+}
+
+.btn_vk img {
+    width: 20px;
+    height: auto;
+    margin: 0;
+    cursor: pointer;
+    transition: unset;
+}
+
+@media (max-width: 700px) {
+    .profile_block_group {
+        flex-direction: column;
+    }
+}
