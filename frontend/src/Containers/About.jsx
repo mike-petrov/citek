@@ -11,22 +11,12 @@ import './About.css';
 
 class About extends React.Component {
 	render() {
-		// const { sample } = this.state;
-
-		const text_n = (
-			<div>
-				<p>Студент 3 курса СПбГУ, <br></br>
-				   факультет ПМ-ПУ, <br></br>
-				   331 группа</p>
-				<p>Роль: TeamLead & Designer</p>
-			</div>
-			)
 		const text_a = (
 			<div>
 				<p>Студент 3 курса СПбГУ, <br></br>
 					факультет ПМ-ПУ, <br></br>
-					331 группа</p>
-				<p>Роль: Software tester</p>
+					333 группа</p>
+				<p>Роль: Back-end & Designer</p>
 			</div>
 			)
 		const text_l = (
@@ -41,16 +31,8 @@ class About extends React.Component {
 			<div>
 				<p>Студент 3 курса СПбГУ, <br></br>
 					факультет ПМ-ПУ, <br></br>
-					331 группа</p>
+					333 группа</p>
 				<p>Роль: Front-end & Adviser</p>
-			</div>
-			)
-		const text_d = (
-			<div>
-				<p>Студент 3 курса СПбГУ, <br></br>
-					факультет ПМ-ПУ, <br></br>
-					332 группа</p>
-				<p>Роль: Front-end</p>
 			</div>
 			)
 
@@ -60,24 +42,10 @@ class About extends React.Component {
 				<div>
 					<div className="about_info_block">
 						<div className="about_info_photo">
-							<img src={Nikita} className="flexible_image"/>
+							<img src="/img/ekt.png" className="flexible_image"/>
 							<div className="about_name">
-								<p>Князев</p>
-								<p>Никита</p>
-							</div>
-						</div>
-						<div className="about_info_text">
-							{text_n}
-						</div>
-					</div>
-				</div>
-				<div>
-					<div className="about_info_block">
-						<div className="about_info_photo">
-							<img src={Anastasiia} className="flexible_image"/>
-							<div className="about_name">
-								<p>Тырышкина</p>
-								<p>Анастасия</p>
+								<p>Екатерина</p>
+								<p>Павлова</p>
 					</div>
 						</div>
 						<div className="about_info_text">
@@ -110,20 +78,6 @@ class About extends React.Component {
 						</div>
 						<div className="about_info_text">
 							{text_m}
-						</div>
-					</div>
-				</div>
-				<div>
-					<div className="about_info_block">
-						<div className="about_info_photo">
-							<img src={Denis} className="flexible_image"/>
-							<div className="about_name">
-								<p>Ковалёв</p>
-								<p>Денис</p>
-					</div>
-						</div>
-						<div className="about_info_text">
-							{text_d}
 						</div>
 					</div>
 				</div>
