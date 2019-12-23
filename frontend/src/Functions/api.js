@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const server = 'https://askpro.online/api'; // server
+//const server = 'http://localhost:5500';
 //const server = 'http://4cc7c665.ngrok.io'; // localhost
 
 function serverRequest(link, json = {}) {
