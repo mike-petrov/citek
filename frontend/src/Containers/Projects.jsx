@@ -18,6 +18,7 @@ class Projects extends React.Component {
 				category: '',
 				status: '',
 				linkGit: '',
+				phone: '',
 			},
 			filterPanel: false,
 			loaded: false,
@@ -102,6 +103,8 @@ class Projects extends React.Component {
 			this.setState({ arrayProject: { ...arrayProject, status: _e.target.value } });
 		} else if (_type === 'linkGit') {
 			this.setState({ arrayProject: { ...arrayProject, linkGit: _e.target.value } });
+		} else if (_type === 'phone') {
+			this.setState({ arrayProject: { ...arrayProject, phone: _e.target.value } });
 		}
 	}
 
@@ -205,6 +208,14 @@ class Projects extends React.Component {
 								placeholder="GitHub (ссылка)"
 								value={arrayProject.linkGit}
 								onChange={(_e) => { this.handleCreateProject(_e, 'linkGit'); }}
+								required
+							/>
+							<Input
+								name="phone"
+								type="text"
+								placeholder="Телефон"
+								value={arrayProject.phone}
+								onChange={(_e) => { this.handleCreateProject(_e, 'phone'); }}
 								required
 							/>
 							<Input

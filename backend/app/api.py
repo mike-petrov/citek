@@ -54,7 +54,7 @@ def update():
 		phone = projects.find_one({'id': projectId})['phone']
 		if(type(userMail) == int):
 			str = f'Вы можете связаться с ним по vk https://vk.com/id{userMail}'
-			
+
 		if(phone != ''):
 			data = {
 				'phoneNumber': phone,
@@ -193,6 +193,7 @@ def create_project():
 	category = x['category']
 	status = x['status']
 	linkGit = x['linkGit']
+	phone = x['phone']
 
 	post = {
 		'_id': projects.count() + 5,
@@ -205,6 +206,7 @@ def create_project():
 		'dislikes': [],
 		'linkGit': linkGit,
 		'date': int(time.time()),
+		'phone': phone,
 	}
 
 	projects.insert_one(post)
