@@ -92,7 +92,7 @@ class Profile extends React.Component {
 								<Input
 									id="auth_password"
 									name="password"
-									type="text"
+									type="password"
 									placeholder="Пароль"
 									value={authUser.password}
 									onChange={(_e) => { this.handleAuthUser(_e, 'password'); }}
