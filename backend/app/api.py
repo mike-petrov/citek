@@ -51,7 +51,8 @@ def update():
 
 	flag = x['type']
 	if flag:#like
-		phone = user['phone']
+		phone = projects.find_one({'id': projectId})['phone']
+		print(phone)
 		if(phone != ''):
 			data = {
 				'phoneNumber': phone,
