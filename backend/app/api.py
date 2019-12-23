@@ -46,17 +46,19 @@ def update():
 	projectId = x['id']
 	name_project = projects.find_one({'id': projectId})['name']
 	userMail = x['user_mail']
-	user = users.find_one({'mail': userMail})
-	name_user = user['name']
+	name_user = users.find_one({'mail': userMail})['name']
+	str = f'Вы можете связаться с ним по почте {userMail}'
 
 	flag = x['type']
 	if flag:#like
 		phone = projects.find_one({'id': projectId})['phone']
-		print(phone)
+		if(type(userMail) == int):
+			str = f'Вы можете связаться с ним по vk https://vk.com/id{userMail}'
+			
 		if(phone != ''):
 			data = {
 				'phoneNumber': phone,
-				'message': f'Ваш проект {name_project} понравился пользователю с именем {name_user}. Вы можете связаться с ним по почте {userMail}'
+				'message': f'Ваш проект {name_project} понравился пользователю с именем {name_user}. {str}'
 			}
 			#print(data)
 			response = requests.post('https://7mdsba9mil.execute-api.us-east-1.amazonaws.com/newStage/userinfo', json=data, headers={'Content-type': 'application/json'})
@@ -145,7 +147,7 @@ def auth_social():
 			'login': response_access['id'],
 			'password': response_access['id'],
 			'name': response_access['first_name'],
-			'mail': '-',
+			'mail': response_access['id'],
 			'status': 'user',
 			'likes': [],
 			'dislikes': []
